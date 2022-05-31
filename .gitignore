@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+
+# マイグレーションファイルを除外
+HoshuSagyo/Data/Migrations/HoshuSagyo/*
