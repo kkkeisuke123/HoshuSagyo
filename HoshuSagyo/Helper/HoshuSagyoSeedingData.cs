@@ -13,6 +13,13 @@ namespace HoshuSagyo.Helper
         {
             var now = DateTime.Now;
 
+            // 系統情報
+            modelBuilder.Entity<KeitoModel>().HasData(
+                new KeitoModel { Keito = 1, KeitoName = "指令", RegisterDateTime = now, UpdateDateTime = now },
+                new KeitoModel { Keito = 2, KeitoName = "現地", RegisterDateTime = now, UpdateDateTime = now },
+                new KeitoModel { Keito = 99, KeitoName = "未定", RegisterDateTime = now, UpdateDateTime = now }
+                );
+
             // 管轄情報
             modelBuilder.Entity<KankatsuModel>().HasData(
                 new KankatsuModel { Kankatsu = 1, KankatsuName = "東京", RegisterDateTime = now, UpdateDateTime = now},

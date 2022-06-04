@@ -26,6 +26,12 @@ namespace HoshuSagyo.Data
          */
         
         // 管轄情報
+        public DbSet<UserInfoModel> M_UserInfo { get; set; }
+
+        // 系統情報
+        public DbSet<KeitoModel> M_Keito { get; set; }
+
+        // 管轄情報
         public DbSet<KankatsuModel> M_Kankatsu { get; set; }
 
 
