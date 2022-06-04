@@ -1,4 +1,6 @@
 using HoshuSagyo.Data;
+using HoshuSagyo.Helper;
+using HoshuSagyo.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,12 +22,14 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews();
 
+// クレームの追加
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
 
 
 
@@ -57,7 +61,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
-// Seed処理。DBにロール情報を登録する
+// Seed処理
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -65,9 +69,12 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
-        var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-        await SeedDbContext.SeedRolesAsync(userManager, roleManager);
+        // DBにロール情報を登録する
+        await ContextSeed.SeedRolesAsync(userManager, roleManager);
+        // DBにデフォルトユーザーを登録する
+        await ContextSeed.SeedSuperAdminAsync(userManager, roleManager);
     }
     catch (Exception ex)
     {
