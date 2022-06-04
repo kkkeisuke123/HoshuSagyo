@@ -1,17 +1,16 @@
 ﻿using HoshuSagyo.Data;
-using HoshuSagyo.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 
 namespace HoshuSagyo.Helper
 {
-    public class ApplicationUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<ApplicationUser>
+    public class IdentityUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<IdentityUser>
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public ApplicationUserClaimsPrincipalFactory(
-            UserManager<ApplicationUser> userManager,
+        public IdentityUserClaimsPrincipalFactory(
+            UserManager<IdentityUser> userManager,
             IOptions<IdentityOptions> options,
             ApplicationDbContext dbContext
             ) : base(userManager, options)
@@ -19,7 +18,7 @@ namespace HoshuSagyo.Helper
             _dbContext = dbContext;
         }
 
-        protected override async Task<ClaimsIdentity> GenerateClaimsAsync(ApplicationUser user)
+        protected override async Task<ClaimsIdentity> GenerateClaimsAsync(IdentityUser user)
         {
             var identity = await base.GenerateClaimsAsync(user);
 

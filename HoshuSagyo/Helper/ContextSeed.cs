@@ -1,13 +1,11 @@
-﻿using HoshuSagyo.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace HoshuSagyo.Helper
 {
     public static class ContextSeed
     {
         public static async Task SeedRolesAsync(
-            UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+            UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             //Seed Roles
             await roleManager.CreateAsync(new IdentityRole(Enums.Roles.Shirei.ToString()));
@@ -15,16 +13,15 @@ namespace HoshuSagyo.Helper
         }
 
         public static async Task SeedSuperAdminAsync(
-            UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+            UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             //Seed Default User
-            var defaultUser = new ApplicationUser
+            var defaultUser = new IdentityUser
             {
                 UserName = "TokyoShirei@gmail.com",
                 Email = "TokyoShirei@gmail.com",
                 EmailConfirmed = true,
-                PhoneNumberConfirmed = true,
-                Kankatsu = 1
+                PhoneNumberConfirmed = true
             };
             if (userManager.Users.All(u => u.Id != defaultUser.Id))
             {
