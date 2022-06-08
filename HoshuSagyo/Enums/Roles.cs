@@ -2,7 +2,8 @@
 {
     public enum Roles
     {
-        Shirei,
-        Genchi
+        Shirei = 1,
+        Genchi = 2,
+        Mitei = 99
     }
 }

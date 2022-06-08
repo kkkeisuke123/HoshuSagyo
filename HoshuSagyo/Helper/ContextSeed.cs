@@ -10,6 +10,7 @@ namespace HoshuSagyo.Helper
             //Seed Roles
             await roleManager.CreateAsync(new IdentityRole(Enums.Roles.Shirei.ToString()));
             await roleManager.CreateAsync(new IdentityRole(Enums.Roles.Genchi.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(Enums.Roles.Mitei.ToString()));
         }
 
         public static async Task SeedSuperAdminAsync(
