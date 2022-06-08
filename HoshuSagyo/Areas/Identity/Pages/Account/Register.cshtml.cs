@@ -2,15 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
+using HoshuSagyo.Data;
+using HoshuSagyo.Models.Components;
+using HoshuSagyo.Models.Master;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
 
 namespace HoshuSagyo.Areas.Identity.Pages.Account
 {
@@ -19,23 +18,27 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
-        private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
+        public readonly List<Itemlist> KeitoList;
+        public readonly List<Itemlist> KankatsuList;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            HoshuSagyoDbContext hoshuSagyoDbContext)
         {
             _userManager = userManager;
             _userStore = userStore;
-            _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
+            _hoshuSagyoDbContext = hoshuSagyoDbContext;
+
+            // ドロップダウンリストの項目を用意
+            KeitoList = _hoshuSagyoDbContext.M_Keito.Select(x => new Itemlist { Value = x.Keito, Text = x.KeitoName }).ToList();
+            KankatsuList = _hoshuSagyoDbContext.M_Kankatsu.Select(x => new Itemlist { Value = x.Kankatsu, Text = x.KankatsuName }).ToList();
         }
 
         /// <summary>
@@ -68,18 +71,17 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
+            [Display(Name = "ユーザー名")]
+            public string UserName { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "{0}は{2}文字以上、{1}文字以下で指定してください。", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "パスワード")]
             public string Password { get; set; }
 
             /// <summary>
@@ -87,9 +89,16 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "パスワード（確認）")]
+            [Compare("Password", ErrorMessage = "パスワードとパスワード（確認）が一致しません。")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "系統")]
+            public string Keito { get; set; }
+
+            [Display(Name = "管轄")]
+            public string Kankatsu { get; set; }
         }
 
 
@@ -107,32 +116,33 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    // デフォルトのロールを追加
-                    await _userManager.AddToRoleAsync(user, Enums.Roles.Genchi.ToString());
+                    // DBにデフォルトのロールを追加
+                    await _userManager.AddToRoleAsync(user, Enums.Roles.Mitei.ToString());
+
+                    // DBにユーザー情報を追加
+                    var now = DateTime.Now;
+                    _hoshuSagyoDbContext.M_UserInfo.Add(new UserInfoModel
+                    {
+                        UserId = user.Id,
+                        Keito = Input.Keito,
+                        Kankatsu = Input.Kankatsu,
+                        RegisterDateTime = now,
+                        UpdateDateTime = now
+                    });
+                    _hoshuSagyoDbContext.SaveChanges();
 
                     var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.UserName, returnUrl = returnUrl });
                     }
                     else
                     {
@@ -162,15 +172,6 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account
                     $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
-        }
-
-        private IUserEmailStore<IdentityUser> GetEmailStore()
-        {
-            if (!_userManager.SupportsUserEmail)
-            {
-                throw new NotSupportedException("The default UI requires a user store with email support.");
-            }
-            return (IUserEmailStore<IdentityUser>)_userStore;
         }
     }
 }
