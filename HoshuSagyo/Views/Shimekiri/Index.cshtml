@@ -4,10 +4,8 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">締切画面</a>.</p>
-    <p>@Model.Kankatsu</p>
-    @if (User.Identity.IsAuthenticated)
+    <h1 class="display-6">締切画面</h1>
+    @*@if (User.Identity.IsAuthenticated)
     {
         <table class="table table-responsive-sm">
             @foreach (var claim in User.Claims)
@@ -19,5 +17,28 @@
                 </tr>
             }
         </table>
-    }
+    }*@
+
+    <form asp-controller="Shimekiri" asp-action="DoShimekiri" method="post">
+        <div class="container p-3">
+            <div class="row">
+                <div class="col text-end">
+                    現在の締切済日：
+                </div>
+                <div class="col text-start">
+                    @Model.ShimekiriZumiBi.Value.ToShortDateString()
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-end">
+                    新しい締切日：
+                </div>
+                <div class="col text-start">
+                    <input name="shimekiriBi" type="text" value="@Model.ShimekiriZumiBi.Value.AddMonths(1).ToShortDateString()"/>
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-success" value="締切"/>
+        <a class="btn btn-outline-success" asp-controller="Home" asp-action="Index">戻る</a>
+    </form>
 </div>

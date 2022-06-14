@@ -30,6 +30,12 @@ builder.Services.AddControllersWithViews();
 // クレームの追加
 builder.Services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, IdentityUserClaimsPrincipalFactory>();
 
+// ポリシーの追加
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("KeitoPolicy", policy =>
+                        policy.RequireClaim("Keito", "1"));
+});
 
 
 

@@ -1,0 +1,13 @@
+﻿@model HoshuSagyo.Models.Transactions.ShimekiriModel
+@{
+    ViewData["Title"] = "締切完了画面";
+}
+
+<div class="text-center">
+    <h1 class="display-6">締切完了画面</h1>
+    <p>締切処理が完了しました</p>
+    <p>締切済日：@Model.ShimekiriZumiBi.Value.ToShortDateString()</p>
+    <p>
+        <a class="btn btn-outline-success" asp-controller="Shimekiri" asp-action="Index">戻る</a>
+    </p>
+</div>

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService Authorization
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,9 +28,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Shimekiri" asp-action="Index">締切</a>
-                        </li>
+                        @{
+                            var keitoPolicy = await Authorization.AuthorizeAsync(User, "KeitoPolicy");
+                        }
+                        
+                        @* 指令系統のユーザーにのみ、以下のリンクを表示させる *@
+                        @if (keitoPolicy.Succeeded)
+                        {
+                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Shimekiri" asp-action="Index">締切</a>
+                             </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
