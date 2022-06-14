@@ -1,0 +1,30 @@
+﻿@model HoshuSagyo.Models.Transactions.ShimekiriModel
+@{
+    ViewData["Title"] = "締切解除画面";
+}
+
+<div class="text-center">
+    <h1 class="display-6">締切解除画面</h1>
+    <form asp-controller="ShimekiriKaijo" asp-action="DoShimekiriKaijo" method="post">
+        <div class="container p-3">
+            <div class="row">
+                <div class="col text-end">
+                    現在の締切済日：
+                </div>
+                <div class="col text-start">
+                    @Model.ShimekiriZumiBi.Value.ToShortDateString()
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-end">
+                    新しい締切日：
+                </div>
+                <div class="col text-start">
+                    <input name="shimekiriBi" type="text" value="@Model.ShimekiriZumiBi.Value.AddMonths(-1).ToShortDateString()"/>
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-success" value="締切解除"/>
+        <a class="btn btn-outline-success" asp-controller="Home" asp-action="Index">戻る</a>
+    </form>
+</div>
