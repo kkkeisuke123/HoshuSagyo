@@ -41,6 +41,11 @@ namespace HoshuSagyo.Data
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // 複合主キーの設定
+            modelBuilder.Entity<ShimekiriModel>().
+                HasKey(c => new { c.Keito, c.Kankatsu });
+
+            // マスタ情報作成
             modelBuilder.SeedMasterTable();
         }
     }
