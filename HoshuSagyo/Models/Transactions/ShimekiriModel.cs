@@ -5,7 +5,7 @@ namespace HoshuSagyo.Models.Transactions
     public class ShimekiriModel : EntityBase
     {
         // 締切済日
-        [Key]
+        [Required]
         public DateTime? ShimekiriZumiBi { get; set; }
 
         // 管轄
