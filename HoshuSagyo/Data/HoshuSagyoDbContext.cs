@@ -16,6 +16,9 @@ namespace HoshuSagyo.Data
          * トランザクションテーブル
          */
         
+        // 作業計画情報
+        public DbSet<SagyoKeikakuModel> T_SagyoKeikaku { get; set; }
+
         // 締切情報
         public DbSet<ShimekiriModel> T_Shimekiri { get; set; }
 
@@ -34,6 +37,11 @@ namespace HoshuSagyo.Data
         // 管轄情報
         public DbSet<KankatsuModel> M_Kankatsu { get; set; }
 
+        // 作業種別情報
+        public DbSet<SagyoShubetsuModel> M_SagyoShubetsu { get; set; }
+
+        // 作業場所情報
+        public DbSet<SagyoBashoModel> M_SagyoBasho { get; set; }
 
         /// <summary>
         /// テーブル作成
@@ -42,8 +50,10 @@ namespace HoshuSagyo.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // 複合主キーの設定
-            modelBuilder.Entity<ShimekiriModel>().
-                HasKey(c => new { c.Keito, c.Kankatsu });
+            modelBuilder.Entity<SagyoKeikakuModel>().HasKey(
+                c => new { c.SagyoKaishiBi, c.Keito, c.Kankatsu, c.SagyoShubetsu, c.SagyoBasho });
+            modelBuilder.Entity<ShimekiriModel>().HasKey(
+                c => new { c.Keito, c.Kankatsu });
 
             // マスタ情報作成
             modelBuilder.SeedMasterTable();

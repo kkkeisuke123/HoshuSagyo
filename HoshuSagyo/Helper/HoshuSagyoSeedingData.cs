@@ -30,6 +30,20 @@ namespace HoshuSagyo.Helper
                 new KankatsuModel { Kankatsu = 6, KankatsuName = "栃木", RegisterDateTime = now, UpdateDateTime = now },
                 new KankatsuModel { Kankatsu = 7, KankatsuName = "茨城", RegisterDateTime = now, UpdateDateTime = now }
                 );
+
+            // 作業種別
+            modelBuilder.Entity<SagyoShubetsuModel>().HasData(
+                new SagyoShubetsuModel { SagyoShubetsu = 1, SagyoShubetsuName = "種別A", RegisterDateTime = now, UpdateDateTime = now},
+                new SagyoShubetsuModel { SagyoShubetsu = 2, SagyoShubetsuName = "種別B", RegisterDateTime = now, UpdateDateTime = now },
+                new SagyoShubetsuModel { SagyoShubetsu = 3, SagyoShubetsuName = "種別C", RegisterDateTime = now, UpdateDateTime = now }
+                );
+
+            // 作業場所
+            modelBuilder.Entity<SagyoBashoModel>().HasData(
+                new SagyoBashoModel { SagyoBasho = 1, SagyoBashoName = "場所A", RegisterDateTime = now, UpdateDateTime = now },
+                new SagyoBashoModel { SagyoBasho = 2, SagyoBashoName = "場所B", RegisterDateTime = now, UpdateDateTime = now },
+                new SagyoBashoModel { SagyoBasho = 3, SagyoBashoName = "場所C", RegisterDateTime = now, UpdateDateTime = now }
+                );
         }
     }
 }
