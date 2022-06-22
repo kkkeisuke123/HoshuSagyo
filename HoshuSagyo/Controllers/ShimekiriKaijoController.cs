@@ -8,10 +8,10 @@ namespace HoshuSagyo.Controllers
     [Authorize(Policy = "KeitoPolicy")]
     public class ShimekiriKaijoController : Controller
     {
-        private readonly HoshuSagyoDbContext _hoshusagyoDbContext;
+        private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
         public ShimekiriKaijoController(HoshuSagyoDbContext hoshuSagyoDbContext)
         {
-            _hoshusagyoDbContext = hoshuSagyoDbContext;
+            _hoshuSagyoDbContext = hoshuSagyoDbContext;
         }
 
         public IActionResult Index()
@@ -26,8 +26,8 @@ namespace HoshuSagyo.Controllers
             var shimekiriModel = GetShimekiriModel();
             var shimekiriBiDateTime = DateTime.ParseExact(shimekiriBi, "yyyy/MM/dd", null);
             shimekiriModel.ShimekiriZumiBi = shimekiriBiDateTime;
-            _hoshusagyoDbContext.Update(shimekiriModel);
-            _hoshusagyoDbContext.SaveChanges();
+            _hoshuSagyoDbContext.Update(shimekiriModel);
+            _hoshuSagyoDbContext.SaveChanges();
 
             return View("Result", shimekiriModel);
         }
@@ -38,7 +38,7 @@ namespace HoshuSagyo.Controllers
             int keito = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Keito").Value);
             int kankatsu = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Kankatsu").Value);
 
-            return _hoshusagyoDbContext.T_Shimekiri.FirstOrDefault(row =>
+            return _hoshuSagyoDbContext.T_Shimekiri.FirstOrDefault(row =>
                     row.Keito == keito && row.Kankatsu == kankatsu);
         }
     }
