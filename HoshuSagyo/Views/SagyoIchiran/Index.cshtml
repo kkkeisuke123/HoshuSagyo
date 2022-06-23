@@ -1,0 +1,20 @@
+﻿@model HoshuSagyo.Models.InputModels.SagyoIchiranGamen
+@{
+    ViewData["Title"] = "作業一覧画面";
+}
+
+<div class="text-center">
+    <h1 class="display-6">作業一覧画面</h1>
+    <table class="table table-hover" id="latestFoodsTable">
+        <tbody>
+            @foreach (var content in Model.SagyoIchiranDisplayContents)
+            {
+                <tr>
+                    <td>
+                        <partial name="_SagyoIchiranPartial" model="content">
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
