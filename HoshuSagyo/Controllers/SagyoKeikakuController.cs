@@ -17,20 +17,20 @@ namespace HoshuSagyo.Controllers
 
         public IActionResult Index()
         {
-            return View(GetGamenItems());
+            return View(Initialize());
         }
 
-        private SagyoKeikakuTorokuGamen GetGamenItems()
+        private SagyoKeikakuTorokuGamen Initialize()
         {
-            var gamenItems = new SagyoKeikakuTorokuGamen();
+            var gamen = new SagyoKeikakuTorokuGamen();
 
             // ドロップダウンリストの項目を用意
-            gamenItems.KeitoList = _hoshuSagyoDbContext.M_Keito.Select(x => new Itemlist { Value = x.Keito, Text = x.KeitoName }).ToList();
-            gamenItems.KankatsuList = _hoshuSagyoDbContext.M_Kankatsu.Select(x => new Itemlist { Value = x.Kankatsu, Text = x.KankatsuName }).ToList();
-            gamenItems.SagyoShubetsuList = _hoshuSagyoDbContext.M_SagyoShubetsu.Select(x => new Itemlist { Value = x.SagyoShubetsu, Text = x.SagyoShubetsuName }).ToList();
-            gamenItems.SagyoBashoList = _hoshuSagyoDbContext.M_SagyoBasho.Select(x => new Itemlist { Value = x.SagyoBasho, Text = x.SagyoBashoName }).ToList();
+            gamen.KeitoList = _hoshuSagyoDbContext.M_Keito.Select(x => new Itemlist { Value = x.Keito, Text = x.KeitoName }).ToList();
+            gamen.KankatsuList = _hoshuSagyoDbContext.M_Kankatsu.Select(x => new Itemlist { Value = x.Kankatsu, Text = x.KankatsuName }).ToList();
+            gamen.SagyoShubetsuList = _hoshuSagyoDbContext.M_SagyoShubetsu.Select(x => new Itemlist { Value = x.SagyoShubetsu, Text = x.SagyoShubetsuName }).ToList();
+            gamen.SagyoBashoList = _hoshuSagyoDbContext.M_SagyoBasho.Select(x => new Itemlist { Value = x.SagyoBasho, Text = x.SagyoBashoName }).ToList();
 
-            return gamenItems;
+            return gamen;
         }
 
         [HttpPost]
