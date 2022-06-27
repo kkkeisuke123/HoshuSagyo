@@ -1,34 +1,19 @@
 ﻿@model HoshuSagyo.Models.DisplayModels.SagyoIchiranDisplayContent
 
-<div class="row">
-    <div class="col">
-        @Model.SagyoKaishiBi
-    </div>
-    <div class="col">
-        @Model.KeitoName
-    </div>
-    <div class="col">
-        @Model.KankatsuName
-    </div>
-    <div class="col">
-        @Model.SagyoShubetsuName
-    </div>
-    <div class="col">
-        @Model.SagyoBashoName
-    </div>
-    <div class="col">
-        @Model.SagyoNaiyo
-    </div>
-    <div class="col">
-        @Model.JishaSekininshaMei
-    </div>
-    <div class="col">
-        @Model.JishaSagyoinSu
-    </div>
-    <div class="col">
-        @Model.KyoryokuGaishaSekininshaMei
-    </div>
-    <div class="col">
-        @Model.KyoryokuGaishaSagyoinSu
-    </div>
-</div>
+<td>@Model.SagyoKaishiBi</td>
+<td>@Model.KeitoName</td>
+<td>@Model.KankatsuName</td>
+<td>@Model.SagyoShubetsuName</td>
+<td>@Model.SagyoBashoName</td>
+<td>@Model.SagyoNaiyo</td>
+<td>@Model.JishaSekininshaMei</td>
+<td>@Model.JishaSagyoinSu</td>
+<td>@Model.KyoryokuGaishaSekininshaMei</td>
+<td>@Model.KyoryokuGaishaSagyoinSu</td>
+<td>
+    <a asp-controller="SagyoKeikaku" asp-action="Index">修正</a>
+    <span>|</span>
+    <a asp-controller="SagyoKeikaku" asp-action="Index">参照</a>
+    <span>|</span>
+    <a asp-controller="SagyoKeikaku" asp-action="Index">削除</a>
+</td>

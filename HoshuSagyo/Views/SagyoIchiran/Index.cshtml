@@ -5,14 +5,72 @@
 
 <div class="text-center">
     <h1 class="display-6">作業一覧画面</h1>
-    <table class="table table-hover" id="latestFoodsTable">
+    <form asp-controller="SagyoIchiran" asp-action="Search" method="post">
+        <div class="row justify-content-start">
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <select asp-for="@Model.Keito" class="form-control" asp-items="@(new SelectList(Model.KeitoList, "Value", "Text"))">
+                        <option value="">-</option>
+                    </select>
+                    <label asp-for="@Model.Keito"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <select asp-for="@Model.Kankatsu" class="form-control" asp-items="@(new SelectList(Model.KankatsuList, "Value", "Text"))">
+                        <option value="">-</option>
+                    </select>
+                    <label asp-for="@Model.Kankatsu"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <select asp-for="@Model.SagyoShubetsu" class="form-control" asp-items="@(new SelectList(Model.SagyoShubetsuList, "Value", "Text"))">
+                        <option value="">-</option>
+                    </select>
+                    <label asp-for="@Model.SagyoShubetsu"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <select asp-for="@Model.SagyoBasho" class="form-control" asp-items="@(new SelectList(Model.SagyoBashoList, "Value", "Text"))">
+                        <option value="">-</option>
+                    </select>
+                    <label asp-for="@Model.SagyoBasho"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <div class="form-floating">
+                        <input asp-for="@Model.SagyoNaiyo" class="form-control"></input>
+                        <label asp-for="@Model.SagyoNaiyo"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="btn btn-success" value="検索"/>
+            </div>
+        </div>
+    </form>
+    <table class="table table-hover table-striped" id="latestFoodsTable">
         <tbody>
+            <tr class="table-success">
+                <th>作業開始日</th>
+                <th>系統</th>
+                <th>管轄</th>
+                <th>作業種別</th>
+                <th>作業場所</th>
+                <th>作業内容</th>
+                <th>自社責任者名</th>
+                <th>自社作業員数</th>
+                <th>協力会社責任者名</th>
+                <th>協力会社作業員数</th>
+                <th></th>
+            </tr>
             @foreach (var content in Model.SagyoIchiranDisplayContents)
             {
                 <tr>
-                    <td>
-                        <partial name="_SagyoIchiranPartial" model="content">
-                    </td>
+                    <partial name="_SagyoIchiranPartial" model="content">
                 </tr>
             }
         </tbody>
