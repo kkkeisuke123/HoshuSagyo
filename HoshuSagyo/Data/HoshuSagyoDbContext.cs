@@ -22,6 +22,8 @@ namespace HoshuSagyo.Data
         // 締切情報
         public DbSet<ShimekiriModel> T_Shimekiri { get; set; }
 
+        // 作業番号情報
+        public DbSet<SagyoBangoModel> T_SagyoBango { get; set; }
 
 
         /*
@@ -52,8 +54,12 @@ namespace HoshuSagyo.Data
             // 複合主キーの設定
             modelBuilder.Entity<SagyoKeikakuModel>().HasKey(
                 c => new { c.SagyoKaishiBi, c.Keito, c.Kankatsu, c.SagyoShubetsu, c.SagyoBasho });
+            
             modelBuilder.Entity<ShimekiriModel>().HasKey(
                 c => new { c.Keito, c.Kankatsu });
+
+            modelBuilder.Entity<SagyoBangoModel>().HasKey(
+                c => new { c.SagyoKaishiBi, c.Keito, c.Kankatsu });
 
             // マスタ情報作成
             modelBuilder.SeedMasterTable();

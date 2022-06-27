@@ -4,6 +4,7 @@ using HoshuSagyo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HoshuSagyo.Migrations.HoshuSagyoDb
 {
     [DbContext(typeof(HoshuSagyoDbContext))]
-    partial class HoshuSagyoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220627060601_作業番号テーブルを追加")]
+    partial class 作業番号テーブルを追加
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,50 +53,50 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
                         {
                             Kankatsu = 1,
                             KankatsuName = "東京",
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         },
                         new
                         {
                             Kankatsu = 2,
                             KankatsuName = "神奈川",
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         },
                         new
                         {
                             Kankatsu = 3,
                             KankatsuName = "千葉",
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         },
                         new
                         {
                             Kankatsu = 4,
                             KankatsuName = "埼玉",
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         },
                         new
                         {
                             Kankatsu = 5,
                             KankatsuName = "群馬",
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         },
                         new
                         {
                             Kankatsu = 6,
                             KankatsuName = "栃木",
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         },
                         new
                         {
                             Kankatsu = 7,
                             KankatsuName = "茨城",
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         });
                 });
 
@@ -127,22 +129,22 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
                         {
                             Keito = 1,
                             KeitoName = "指令",
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         },
                         new
                         {
                             Keito = 2,
                             KeitoName = "現地",
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         },
                         new
                         {
                             Keito = 99,
                             KeitoName = "未定",
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         });
                 });
 
@@ -174,23 +176,23 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
                         new
                         {
                             SagyoBasho = 1,
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
                             SagyoBashoName = "場所A",
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         },
                         new
                         {
                             SagyoBasho = 2,
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
                             SagyoBashoName = "場所B",
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         },
                         new
                         {
                             SagyoBasho = 3,
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
                             SagyoBashoName = "場所C",
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         });
                 });
 
@@ -222,23 +224,23 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
                         new
                         {
                             SagyoShubetsu = 1,
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
                             SagyoShubetsuName = "種別A",
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         },
                         new
                         {
                             SagyoShubetsu = 2,
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
                             SagyoShubetsuName = "種別B",
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         },
                         new
                         {
                             SagyoShubetsu = 3,
-                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244),
+                            RegisterDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731),
                             SagyoShubetsuName = "種別C",
-                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 12, 25, 733, DateTimeKind.Local).AddTicks(4244)
+                            UpdateDateTime = new DateTime(2022, 6, 27, 15, 6, 0, 852, DateTimeKind.Local).AddTicks(1731)
                         });
                 });
 
@@ -292,7 +294,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("SagyoKaishiBi", "Keito", "Kankatsu");
 
-                    b.ToTable("T_SagyoBango");
+                    b.ToTable("SagyoBangoModel");
                 });
 
             modelBuilder.Entity("HoshuSagyo.Models.Transactions.SagyoKeikakuModel", b =>
@@ -378,7 +380,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("Keito", "Kankatsu");
 
-                    b.ToTable("T_Shimekiri");
+                    b.ToTable("ShimekiriModel");
                 });
 #pragma warning restore 612, 618
         }
