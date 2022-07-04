@@ -1,25 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace HoshuSagyo.Models.Transactions
 {
     public class SagyoKeikakuModel : EntityBase
     {
-        // 作業開始日
+        // 作業開始日時
         [Required]
-        public string SagyoKaishiBi { get; set; }
+        public DateTime SagyoKaishiNichiji { get; set; }
 
-        // 作業開始時間
+        // 作業終了日時
         [Required]
-        public string SagyoKaishiJikan { get; set; }
-
-        // 作業終了日
-        [Required]
-        public string SagyoShuryoBi { get; set; }
-
-        // 作業終了時間
-        [Required]
-        public string SagyoShuryoJikan { get; set; }
+        public DateTime SagyoShuryoNichiji { get; set; }
 
         // 系統
         [Required]

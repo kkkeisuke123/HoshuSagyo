@@ -39,10 +39,8 @@ namespace HoshuSagyo.Controllers
             // 登録処理を実行
             var sagyoKeikakuModel = new SagyoKeikakuModel
             {
-                SagyoKaishiBi = inputValue.SagyoKaishiBi.ToShortDateString(),
-                SagyoKaishiJikan = inputValue.SagyoKaishiJikan.ToShortTimeString(),
-                SagyoShuryoBi = inputValue.SagyoShuryoBi.ToShortDateString(),
-                SagyoShuryoJikan = inputValue.SagyoShuryoJikan.ToShortTimeString(),
+                SagyoKaishiNichiji = inputValue.SagyoKaishiBi.Add(inputValue.SagyoKaishiJikan.TimeOfDay),
+                SagyoShuryoNichiji = inputValue.SagyoShuryoBi.Add(inputValue.SagyoShuryoJikan.TimeOfDay),
                 Keito = inputValue.Keito,
                 Kankatsu = inputValue.Kankatsu,
                 SagyoShubetsu = inputValue.SagyoShubetsu,
