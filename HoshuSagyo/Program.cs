@@ -66,6 +66,10 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
+// 例外処理
+//app.UseExceptionHandler("/Home/Error");
+app.UseStatusCodePagesWithReExecute("/Home/Error/{0}");
+
 // Seed処理
 using (var scope = app.Services.CreateScope())
 {
