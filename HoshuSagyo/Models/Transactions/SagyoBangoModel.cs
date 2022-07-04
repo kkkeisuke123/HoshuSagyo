@@ -4,9 +4,9 @@ namespace HoshuSagyo.Models.Transactions
 {
     public class SagyoBangoModel : EntityBase
     {
-        // 作業開始日
+        // 年月
         [Required]
-        public DateTime? SagyoKaishiBi { get; set; }
+        public string Nengetsu { get; set; }
 
         // 系統
         [Required]
