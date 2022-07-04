@@ -53,13 +53,13 @@ namespace HoshuSagyo.Data
         {
             // 複合主キーの設定
             modelBuilder.Entity<SagyoKeikakuModel>().HasKey(
-                c => new { c.SagyoKaishiBi, c.Keito, c.Kankatsu, c.SagyoShubetsu, c.SagyoBasho });
+                c => new { c.SagyoKaishiNichiji, c.Keito, c.Kankatsu, c.SagyoShubetsu, c.SagyoBasho });
             
             modelBuilder.Entity<ShimekiriModel>().HasKey(
                 c => new { c.Keito, c.Kankatsu });
 
             modelBuilder.Entity<SagyoBangoModel>().HasKey(
-                c => new { c.SagyoKaishiBi, c.Keito, c.Kankatsu });
+                c => new { c.Nengetsu, c.Keito, c.Kankatsu });
 
             // マスタ情報作成
             modelBuilder.SeedMasterTable();

@@ -1,0 +1,13 @@
+﻿@model HoshuSagyo.Models.Transactions.SagyoBangoModel
+@{
+    ViewData["Title"] = "作業番号付与完了画面";
+}
+
+<div class="text-center">
+    <h1 class="display-6">作業番号付与完了画面</h1>
+    <p>作業番号付与処理が完了しました</p>
+    <p>対象月の最終作業番号：@Model.SaishuBango</p>
+    <p>
+        <a class="btn btn-outline-success" asp-controller="SagyoBango" asp-action="Index">戻る</a>
+    </p>
+</div>
