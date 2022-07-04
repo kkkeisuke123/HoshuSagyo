@@ -1,9 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HoshuSagyo.Models.Transactions
 {
     public class SagyoKeikakuModel : EntityBase
     {
+        // ID
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
+        public int Id { get; set; }
+
         // 作業開始日時
         [Required]
         public DateTime SagyoKaishiNichiji { get; set; }
