@@ -2,6 +2,9 @@
 {
     public class SagyoIchiranDisplayContent
     {
+        // ID
+        public int Id { get; set; }
+
         // 作業開始日
         public string SagyoKaishiBi { get; set; }
 

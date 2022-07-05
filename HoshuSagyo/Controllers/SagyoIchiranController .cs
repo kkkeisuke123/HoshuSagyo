@@ -72,6 +72,7 @@ namespace HoshuSagyo.Controllers
             {
                 var content = new SagyoIchiranDisplayContent();
 
+                content.Id = sagyoKeikaku.Id;
                 content.SagyoKaishiBi = sagyoKeikaku.SagyoKaishiNichiji.ToShortDateString();
                 content.SagyoNaiyo = sagyoKeikaku.SagyoNaiyo;
                 content.JishaSekininshaMei = sagyoKeikaku.JishaSekininshaMei;
