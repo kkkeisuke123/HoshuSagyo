@@ -1,0 +1,106 @@
+﻿@model HoshuSagyo.Models.InputModels.SagyoKeikakuGamen
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <input asp-for="@Model.Id" type="hidden" />
+        <div class="form-floating">
+            <input asp-for="@Model.SagyoBango" class="form-control" value="@Model.SagyoBango" disabled="disabled" />
+            <label asp-for="@Model.SagyoBango"></label>
+        </div>
+        <div class="form-floating">
+            @{
+                DateTime? sagyoKaishiBi = Model.SagyoKaishiBi;
+                if (Model.SagyoKaishiBi == DateTime.MinValue)
+                {
+                    sagyoKaishiBi = null;
+                }
+                <input asp-for="@Model.SagyoKaishiBi" class="form-control" value="@sagyoKaishiBi?.ToString("yyyy-MM-dd")" />
+            }
+            <label asp-for="@Model.SagyoKaishiBi"></label>
+        </div>
+        <div class="form-floating">
+            @{
+                DateTime? sagyoKaishiJikan = Model.SagyoKaishiJikan;
+                if (Model.SagyoKaishiJikan == DateTime.MinValue)
+                {
+                    sagyoKaishiJikan = null;
+                }
+                <input asp-for="@Model.SagyoKaishiJikan" class="form-control" value="@sagyoKaishiJikan?.ToString("HH:mm")" />
+            }
+            <label asp-for="@Model.SagyoKaishiJikan"></label>
+        </div>
+        <div class="form-floating">
+            @{
+                DateTime? sagyoShuryoBi = Model.SagyoShuryoBi;
+                if (Model.SagyoShuryoBi == DateTime.MinValue)
+                {
+                    sagyoShuryoBi = null;
+                }
+                <input asp-for="@Model.SagyoShuryoBi" class="form-control" value="@sagyoShuryoBi?.ToString("yyyy-MM-dd")" />
+            }
+            <label asp-for="@Model.SagyoShuryoBi"></label>
+        </div>
+        <div class="form-floating">
+            @{
+                DateTime? sagyoShuryoJikan = Model.SagyoShuryoJikan;
+                if (Model.SagyoShuryoJikan == DateTime.MinValue)
+                {
+                    sagyoShuryoJikan = null;
+                }
+                <input asp-for="@Model.SagyoShuryoJikan" class="form-control" value="@sagyoShuryoJikan?.ToString("HH:mm")" />
+            }
+            <label asp-for="@Model.SagyoShuryoJikan"></label>
+        </div>
+        <div class="form-floating">
+            <select asp-for="@Model.Keito" class="form-control" asp-items="@(new SelectList(Model.KeitoList, "Value", "Text"))" value="@Model.Keito">
+                <option value="">選択してください</option>
+            </select>
+            <label asp-for="@Model.Keito"></label>
+            <span asp-validation-for="@Model.Keito" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <select asp-for="@Model.Kankatsu" class="form-control" asp-items="@(new SelectList(Model.KankatsuList, "Value", "Text"))" value="@Model.Kankatsu">
+                <option value="">選択してください</option>
+            </select>
+            <label asp-for="@Model.Kankatsu"></label>
+            <span asp-validation-for="@Model.Kankatsu" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <select asp-for="@Model.SagyoShubetsu" class="form-control" asp-items="@(new SelectList(Model.SagyoShubetsuList, "Value", "Text"))" value="@Model.SagyoShubetsu">
+                <option value="">選択してください</option>
+            </select>
+            <label asp-for="@Model.SagyoShubetsu"></label>
+            <span asp-validation-for="@Model.SagyoShubetsu" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <select asp-for="@Model.SagyoBasho" class="form-control" asp-items="@(new SelectList(Model.SagyoBashoList, "Value", "Text"))" value="@Model.SagyoBasho">
+                <option value="">選択してください</option>
+            </select>
+            <label asp-for="@Model.SagyoBasho"></label>
+            <span asp-validation-for="@Model.SagyoBasho" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-floating">
+            <textarea asp-for="@Model.SagyoNaiyo" class="form-control" style="height: calc( 1.3em * 6 );line-height: 1.3" value="@Model.SagyoNaiyo"></textarea>
+            <label asp-for="@Model.SagyoNaiyo"></label>
+        </div>
+        <div class="form-floating">
+            <input asp-for="@Model.JishaSekininshaMei" class="form-control" value="@Model.JishaSekininshaMei"/>
+            <label asp-for="@Model.JishaSekininshaMei"></label>
+        </div>
+        <div class="form-floating">
+            <input asp-for="@Model.JishaSagyoinSu" class="form-control" value="@Model.JishaSagyoinSu"/>
+            <label asp-for="@Model.JishaSagyoinSu"></label>
+        </div>
+        <div class="form-floating">
+            <input asp-for="@Model.KyoryokuGaishaSekininshaMei" class="form-control" value="@Model.KyoryokuGaishaSekininshaMei"/>
+            <label asp-for="@Model.KyoryokuGaishaSekininshaMei"></label>
+        </div>
+        <div class="form-floating">
+            <input asp-for="@Model.KyoryokuGaishaSagyoinSu" class="form-control" value="@Model.KyoryokuGaishaSagyoinSu"/>
+            <label asp-for="@Model.KyoryokuGaishaSagyoinSu"></label>
+        </div>
+    </div>
+</div>

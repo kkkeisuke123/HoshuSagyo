@@ -1,0 +1,18 @@
+﻿@model HoshuSagyo.Models.InputModels.SagyoKeikakuGamen
+@{
+    ViewData["Title"] = "作業計画編集画面";
+}
+
+<div class="text-center">
+    <h1 class="display-6">作業計画編集画面</h1>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form asp-controller="SagyoKeikaku" asp-action="DoEdit" method="post">
+        <partial name="_SagyokeikakuPartial" model="Model">
+        <div class="row justify-content-center">
+            <div class="col">
+                <input type="submit" class="btn btn-success" value="編集"/>
+                <a class="btn btn-outline-success" asp-controller="SagyoIchiran" asp-action="Index">戻る</a>
+            </div>
+        </div>
+    </form>
+</div>

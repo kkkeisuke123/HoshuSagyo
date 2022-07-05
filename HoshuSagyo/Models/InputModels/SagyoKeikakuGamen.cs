@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HoshuSagyo.Models.InputModels
 {
-    public class SagyoKeikakuTorokuGamen
+    public class SagyoKeikakuGamen
     {
         public List<Itemlist> KeitoList;
         public List<Itemlist> KankatsuList;
         public List<Itemlist> SagyoShubetsuList;
         public List<Itemlist> SagyoBashoList;
+        public int Id { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
