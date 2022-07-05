@@ -18,7 +18,7 @@ namespace HoshuSagyo.Controllers
         /// <summary>
         /// 作業計画登録画面を表示します
         /// </summary>
-        /// <returns></returns>
+        /// <returns>作業計画登録画面</returns>
         public IActionResult Index()
         {
             return View(Initialize(null));
@@ -28,12 +28,27 @@ namespace HoshuSagyo.Controllers
         /// 作業計画編集画面を表示します
         /// </summary>
         /// <param name="id">作業計画ID</param>
-        /// <returns></returns>
+        /// <returns>作業計画編集画面</returns>
         public IActionResult Edit(int id)
         {
             return View(Initialize(id));
         }
 
+        /// <summary>
+        /// 作業計画参照画面を表示します
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>作業計画参照画面</returns>
+        public IActionResult Reference(int id)
+        {
+            return View(Initialize(id));
+        }
+
+        /// <summary>
+        /// 画面の初期化を行います
+        /// </summary>
+        /// <param name="id">作業計画ID</param>
+        /// <returns>作業計画画面モデル</returns>
         private SagyoKeikakuGamen Initialize(int? id)
         {
             var gamen = new SagyoKeikakuGamen();
@@ -75,6 +90,11 @@ namespace HoshuSagyo.Controllers
             return gamen;
         }
 
+        /// <summary>
+        /// 作業計画の登録処理を行います
+        /// </summary>
+        /// <param name="inputValue">作業計画登録画面の入力項目</param>
+        /// <returns>作業計画完了画面</returns>
         [HttpPost]
         public IActionResult DoToroku([FromForm] SagyoKeikakuGamen inputValue)
         {
@@ -103,6 +123,11 @@ namespace HoshuSagyo.Controllers
             return View("Result", sagyoKeikakuModel);
         }
 
+        /// <summary>
+        /// 作業計画の編集処理を行います
+        /// </summary>
+        /// <param name="inputValue">作業計画編集画面の入力項目</param>
+        /// <returns>作業計画完了画面</returns>
         [HttpPost]
         public IActionResult DoEdit([FromForm] SagyoKeikakuGamen inputValue)
         {
