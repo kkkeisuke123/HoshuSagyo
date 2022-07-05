@@ -45,6 +45,16 @@ namespace HoshuSagyo.Controllers
         }
 
         /// <summary>
+        /// 作業計画削除画面を表示します
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>作業計画削除画面</returns>
+        public IActionResult Delete(int id)
+        {
+            return View(Initialize(id));
+        }
+
+        /// <summary>
         /// 画面の初期化を行います
         /// </summary>
         /// <param name="id">作業計画ID</param>
@@ -120,6 +130,9 @@ namespace HoshuSagyo.Controllers
             // 完了画面に表示する内容をセット
             ViewData["SyoriNaiyo"] = "登録";
 
+            // 完了画面で「戻る」ボタンを押下したとき、遷移する先の画面をセット
+            ViewData["Back"] = "SagyoKeikaku";
+
             return View("Result", sagyoKeikakuModel);
         }
 
@@ -137,7 +150,6 @@ namespace HoshuSagyo.Controllers
             {
                 // エラー
                 ModelState.AddModelError(string.Empty, "作業計画が存在しません");
-                //return View("Edit");
                 return Redirect($"/SagyoKeikaku/Edit/{inputValue.Id}");
             }
 
@@ -159,6 +171,38 @@ namespace HoshuSagyo.Controllers
 
             // 完了画面に表示する内容をセット
             ViewData["SyoriNaiyo"] = "編集";
+
+            // 完了画面で「戻る」ボタンを押下したとき、遷移する先の画面をセット
+            ViewData["Back"] = "SagyoIchiran";
+
+            return View("Result", sagyoKeikaku);
+        }
+
+        /// <summary>
+        /// 作業計画の削除処理を行います
+        /// </summary>
+        /// <param name="inputValue">作業計画削除画面の入力項目</param>
+        /// <returns>作業計画完了画面</returns>
+        [HttpPost]
+        public IActionResult DoDelete([FromForm] SagyoKeikakuGamen inputValue)
+        {
+            // 削除処理を実行
+            var sagyoKeikaku = _hoshuSagyoDbContext.T_SagyoKeikaku.FirstOrDefault(x => x.Id == inputValue.Id);
+            if (sagyoKeikaku == null)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, "作業計画が存在しません");
+                return Redirect($"/SagyoKeikaku/Delete/{inputValue.Id}");
+            }
+
+            _hoshuSagyoDbContext.Remove(sagyoKeikaku);
+            _hoshuSagyoDbContext.SaveChanges();
+
+            // 完了画面に表示する内容をセット
+            ViewData["SyoriNaiyo"] = "削除";
+
+            // 完了画面で「戻る」ボタンを押下したとき、遷移する先の画面をセット
+            ViewData["Back"] = "SagyoIchiran";
 
             return View("Result", sagyoKeikaku);
         }
