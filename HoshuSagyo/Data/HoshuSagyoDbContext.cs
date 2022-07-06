@@ -25,6 +25,8 @@ namespace HoshuSagyo.Data
         // 作業番号情報
         public DbSet<SagyoBangoModel> T_SagyoBango { get; set; }
 
+        // 作業実績情報
+        public DbSet<SagyoJissekiModel> T_SagyoJisseki { get; set; }
 
         /*
          * マスタテーブル
@@ -44,6 +46,15 @@ namespace HoshuSagyo.Data
 
         // 作業場所情報
         public DbSet<SagyoBashoModel> M_SagyoBasho { get; set; }
+
+        // 音声応答情報
+        public DbSet<OnseiOtoModel> M_OnseiOto { get; set; }
+
+        // 音声応答詳細情報
+        public DbSet<OnseiOtoShosaiModel> M_OnseiOtoShosai { get; set; }
+
+        // 進捗情報
+        public DbSet<ShinchokuModel> M_Shinchoku { get; set; }
 
         /// <summary>
         /// テーブル作成
