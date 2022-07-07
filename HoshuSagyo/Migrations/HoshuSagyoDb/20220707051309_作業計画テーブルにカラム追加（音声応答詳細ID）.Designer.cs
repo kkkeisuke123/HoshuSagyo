@@ -4,6 +4,7 @@ using HoshuSagyo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HoshuSagyo.Migrations.HoshuSagyoDb
 {
     [DbContext(typeof(HoshuSagyoDbContext))]
-    partial class HoshuSagyoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220707051309_作業計画テーブルにカラム追加（音声応答詳細ID）")]
+    partial class 作業計画テーブルにカラム追加音声応答詳細ID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

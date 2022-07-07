@@ -52,5 +52,9 @@ namespace HoshuSagyo.Models.Transactions
 
         // 協力会社作業員数
         public int? KyoryokuGaishaSagyoinSu { get; set; }
+
+        // 音声応答詳細ID
+        [Required]
+        public int OnseiOtoShosaiId { get; set; }
     }
 }
