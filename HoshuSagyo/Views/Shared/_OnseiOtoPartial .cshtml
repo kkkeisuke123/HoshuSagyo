@@ -1,0 +1,71 @@
+﻿@model HoshuSagyo.Models.DisplayModels.OnseiOtoDisplayContent
+
+<!-- 音声応答画面をモーダルで開くボタン -->
+<button id="onseiOtoButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+	音声応答画面を開く
+</button>
+
+<!-- モーダルウィンドウ -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">音声応答画面</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <span>作業開始：</span>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                                <select id="kaishiShubetsuList" asp-for="@Model.SagyoKaishiOnseiOtoShubetsu" class="form-control" asp-items="@(new SelectList(Model.OnseiOtoList, "Value", "Text"))" value="@Model.SagyoKaishiOnseiOtoShubetsu">
+                                    <option value="-1">選択してください</option>
+                                </select>
+                                <label asp-for="@Model.SagyoKaishiOnseiOtoShubetsu"></label>
+                                <span asp-validation-for="@Model.SagyoKaishiOnseiOtoShubetsu" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                                <select id="kaishiMessageList" asp-for="@Model.SagyoKaishiOnseiOtoShosaiId" class="form-control" asp-items="@(new SelectList(Model.OnseiOtoShosaiList, "Value", "Text"))" value="@Model.SagyoKaishiOnseiOtoShosaiId">
+                                    <option value="-1">選択してください</option>
+                                </select>
+                                <label asp-for="@Model.SagyoKaishiOnseiOtoShosaiId"></label>
+                                <span asp-validation-for="@Model.SagyoKaishiOnseiOtoShosaiId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span>作業終了：</span>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                                <select id="shuryoShubetsuList" asp-for="@Model.SagyoShuryoOnseiOtoShubetsu" class="form-control" asp-items="@(new SelectList(Model.OnseiOtoList, "Value", "Text"))" value="@Model.SagyoShuryoOnseiOtoShubetsu">
+                                    <option value="-1">選択してください</option>
+                                </select>
+                                <label asp-for="@Model.SagyoShuryoOnseiOtoShubetsu"></label>
+                                <span asp-validation-for="@Model.SagyoShuryoOnseiOtoShubetsu" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                                <select id="shuryoMessageList" asp-for="@Model.SagyoShuryoOnseiOtoShosaiId" class="form-control" asp-items="@(new SelectList(Model.OnseiOtoShosaiList, "Value", "Text"))" value="@Model.SagyoShuryoOnseiOtoShosaiId">
+                                    <option value="-1">選択してください</option>
+                                </select>
+                                <label asp-for="@Model.SagyoShuryoOnseiOtoShosaiId"></label>
+                                <span asp-validation-for="@Model.SagyoShuryoOnseiOtoShosaiId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+			</div>
+		</div>
+	</div>
+</div>

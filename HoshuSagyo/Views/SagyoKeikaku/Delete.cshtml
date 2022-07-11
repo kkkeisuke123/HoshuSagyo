@@ -16,13 +16,16 @@
         </div>
     </form>
 </div>
-<script>
+
+@section scripts{
+    <script>
     // 編集不可の状態にする
-    document.querySelectorAll("form input").forEach(e => {
+    document.querySelectorAll("#sagyokeikaku-partial input").forEach(e => {
         if (e.type !== "hidden" && e.type !== "submit") {
             e.disabled = true;
         }
     });
-    document.querySelectorAll("form select").forEach(e => e.disabled = true);
-    document.querySelectorAll("form textarea").forEach(e => e.disabled = true);
-</script>
+    document.querySelectorAll("#sagyokeikaku-partial select").forEach(e => e.disabled = true);
+    document.querySelectorAll("#sagyokeikaku-partial textarea").forEach(e => e.disabled = true);
+    </script>
+}
