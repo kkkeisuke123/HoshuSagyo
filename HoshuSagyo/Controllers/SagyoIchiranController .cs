@@ -75,10 +75,6 @@ namespace HoshuSagyo.Controllers
                 content.Id = sagyoKeikaku.Id;
                 content.SagyoKaishiBi = sagyoKeikaku.SagyoKaishiNichiji.ToShortDateString();
                 content.SagyoNaiyo = sagyoKeikaku.SagyoNaiyo;
-                content.JishaSekininshaMei = sagyoKeikaku.JishaSekininshaMei;
-                content.JishaSagyoinSu = sagyoKeikaku.JishaSagyoinSu;
-                content.KyoryokuGaishaSekininshaMei = sagyoKeikaku.KyoryokuGaishaSekininshaMei;
-                content.KyoryokuGaishaSagyoinSu = sagyoKeikaku.KyoryokuGaishaSagyoinSu;
                 content.KeitoName = _hoshuSagyoDbContext.M_Keito.FirstOrDefault(x => x.Keito == sagyoKeikaku.Keito).KeitoName;
                 content.KankatsuName = _hoshuSagyoDbContext.M_Kankatsu.FirstOrDefault(x => x.Kankatsu == sagyoKeikaku.Kankatsu).KankatsuName;
                 content.SagyoShubetsuName = _hoshuSagyoDbContext.M_SagyoShubetsu.FirstOrDefault(x => x.SagyoShubetsu == sagyoKeikaku.SagyoShubetsu).SagyoShubetsuName;

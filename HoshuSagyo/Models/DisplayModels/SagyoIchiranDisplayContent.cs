@@ -22,17 +22,5 @@
 
         // 作業内容
         public string SagyoNaiyo { get; set; }
-
-        // 自社責任者名
-        public string? JishaSekininshaMei { get; set; }
-
-        // 自社作業員数
-        public int? JishaSagyoinSu { get; set; }
-
-        // 協力会社責任者名
-        public string? KyoryokuGaishaSekininshaMei { get; set; }
-
-        // 協力会社作業員数
-        public int? KyoryokuGaishaSagyoinSu { get; set; }
     }
 }
