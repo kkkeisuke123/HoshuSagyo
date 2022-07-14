@@ -239,17 +239,5 @@ namespace HoshuSagyo.Controllers
 
             return View("Result", sagyoKeikaku);
         }
-
-        /// <summary>
-        /// 指定された応答種別の音声応答詳細メッセージを取得します
-        /// </summary>
-        /// <param name="OtoShubetsu">応答種別</param>
-        /// <returns>音声応答詳細メッセージのリスト</returns>
-        [HttpPost]
-        public JsonResult GetOnseiOtoShosai(string OtoShubetsu)
-        {
-            var shosaiList = _hoshuSagyoDbContext.M_OnseiOtoShosai.Where(x => x.OtoShubetsu == int.Parse(OtoShubetsu));
-            return Json(new SelectList(shosaiList, "Id", "Message"));
-        }
     }
 }

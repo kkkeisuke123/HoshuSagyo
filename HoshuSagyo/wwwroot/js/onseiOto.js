@@ -6,7 +6,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "Post",
-            url: "/SagyoKeikaku/GetOnseiOtoShosai",
+            url: "/AjaxUtility/GetOnseiOtoShosai",
             data: { "OtoShubetsu": $("#kaishiShubetsuList").val() },
             dataType: "json"
         }).done(function (response) {
@@ -22,7 +22,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "Post",
-            url: "/SagyoKeikaku/GetOnseiOtoShosai",
+            url: "/AjaxUtility/GetOnseiOtoShosai",
             data: { "OtoShubetsu": $("#shuryoShubetsuList").val() },
             dataType: "json"
         }).done(function (response) {
