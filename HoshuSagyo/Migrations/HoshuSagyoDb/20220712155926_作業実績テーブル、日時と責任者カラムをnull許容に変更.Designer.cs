@@ -4,6 +4,7 @@ using HoshuSagyo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HoshuSagyo.Migrations.HoshuSagyoDb
 {
     [DbContext(typeof(HoshuSagyoDbContext))]
-    partial class HoshuSagyoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220712155926_作業実績テーブル、日時と責任者カラムをnull許容に変更")]
+    partial class 作業実績テーブル日時と責任者カラムをnull許容に変更
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +46,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("Kankatsu");
 
-                    b.ToTable("M_Kankatsu", (string)null);
+                    b.ToTable("M_Kankatsu");
 
                     b.HasData(
                         new
@@ -120,7 +122,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("Keito");
 
-                    b.ToTable("M_Keito", (string)null);
+                    b.ToTable("M_Keito");
 
                     b.HasData(
                         new
@@ -168,7 +170,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("OtoShubetsu");
 
-                    b.ToTable("M_OnseiOto", (string)null);
+                    b.ToTable("M_OnseiOto");
 
                     b.HasData(
                         new
@@ -226,7 +228,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("M_OnseiOtoShosai", (string)null);
+                    b.ToTable("M_OnseiOtoShosai");
 
                     b.HasData(
                         new
@@ -333,7 +335,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("SagyoBasho");
 
-                    b.ToTable("M_SagyoBasho", (string)null);
+                    b.ToTable("M_SagyoBasho");
 
                     b.HasData(
                         new
@@ -381,7 +383,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("SagyoShubetsu");
 
-                    b.ToTable("M_SagyoShubetsu", (string)null);
+                    b.ToTable("M_SagyoShubetsu");
 
                     b.HasData(
                         new
@@ -429,7 +431,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("Shinchoku");
 
-                    b.ToTable("M_Shinchoku", (string)null);
+                    b.ToTable("M_Shinchoku");
 
                     b.HasData(
                         new
@@ -499,7 +501,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("UserId");
 
-                    b.ToTable("M_UserInfo", (string)null);
+                    b.ToTable("M_UserInfo");
                 });
 
             modelBuilder.Entity("HoshuSagyo.Models.Transactions.SagyoBangoModel", b =>
@@ -526,7 +528,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("Nengetsu", "Keito", "Kankatsu");
 
-                    b.ToTable("T_SagyoBango", (string)null);
+                    b.ToTable("T_SagyoBango");
                 });
 
             modelBuilder.Entity("HoshuSagyo.Models.Transactions.SagyoJissekiModel", b =>
@@ -564,7 +566,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("SagyoKeikakuId");
 
-                    b.ToTable("T_SagyoJisseki", (string)null);
+                    b.ToTable("T_SagyoJisseki");
                 });
 
             modelBuilder.Entity("HoshuSagyo.Models.Transactions.SagyoKeikakuModel", b =>
@@ -628,7 +630,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("Id", "SagyoKaishiNichiji", "Keito", "Kankatsu", "SagyoShubetsu", "SagyoBasho");
 
-                    b.ToTable("T_SagyoKeikaku", (string)null);
+                    b.ToTable("T_SagyoKeikaku");
                 });
 
             modelBuilder.Entity("HoshuSagyo.Models.Transactions.ShimekiriModel", b =>
@@ -653,7 +655,7 @@ namespace HoshuSagyo.Migrations.HoshuSagyoDb
 
                     b.HasKey("Keito", "Kankatsu");
 
-                    b.ToTable("T_Shimekiri", (string)null);
+                    b.ToTable("T_Shimekiri");
                 });
 #pragma warning restore 612, 618
         }

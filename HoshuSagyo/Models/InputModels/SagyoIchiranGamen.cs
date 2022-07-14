@@ -15,6 +15,9 @@ namespace HoshuSagyo.Models.InputModels
         public List<Itemlist> SagyoShubetsuList;
         public List<Itemlist> SagyoBashoList;
 
+        // 作業実績画面のパーツ
+        public SagyoJissekiDisplayContent SagyoJissekiDisplayContent;
+
         // 検索条件
         [Display(Name = "系統")]
         public int Keito { get; set; }

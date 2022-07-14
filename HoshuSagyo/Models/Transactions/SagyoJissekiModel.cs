@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HoshuSagyo.Models.Transactions
 {
@@ -13,11 +14,15 @@ namespace HoshuSagyo.Models.Transactions
         public int Shinchoku { get; set; }
 
         // 作業着手日時
-        [Required]
-        public DateTime SagyoChakushuNichiji { get; set; }
+        public DateTime? SagyoChakushuNichiji { get; set; }
 
         // 作業完了日時
-        [Required]
-        public DateTime SagyoKanryoNichiji { get; set; }
+        public DateTime? SagyoKanryoNichiji { get; set; }
+
+        // 作業着手責任者名
+        public string SagyoChakushuSekininshaMei { get; set; }
+
+        // 作業完了責任者名
+        public string SagyoKanryoSekininshaMei { get; set; }
     }
 }
