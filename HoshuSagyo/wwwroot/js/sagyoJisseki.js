@@ -17,11 +17,11 @@ $(document).ready(function () {
             url: "/AjaxUtility/GetSagyoJisseki",
             data: { "SagyoKeikakuId": sagyoKeikakuId },
             dataType: "json"
-        }).done(function (result) {
-            $("#SagyoChakushuNichiji").val(result["sagyoChakushuNichiji"]);
-            $("#SagyoChakushuSekininshaMei").val(result["sagyoChakushuSekininshaMei"]);
-            $("#SagyoKanryoNichiji").val(result["sagyoKanryoNichiji"]);
-            $("#SagyoKanryoSekininshaMei").val(result["sagyoKanryoSekininshaMei"]);
+        }).done(function (response) {
+            $("#SagyoChakushuNichiji").val(response["sagyoChakushuNichiji"]);
+            $("#SagyoChakushuSekininshaMei").val(response["sagyoChakushuSekininshaMei"]);
+            $("#SagyoKanryoNichiji").val(response["sagyoKanryoNichiji"]);
+            $("#SagyoKanryoSekininshaMei").val(response["sagyoKanryoSekininshaMei"]);
         });
     }
 }); 
