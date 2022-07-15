@@ -1,16 +1,14 @@
 ﻿
-// 作業実績画面が開かれたとき、
-// 対象の作業実績データをAjaxで取得し、画面に反映します
 $(document).ready(function () {
 
     // 作業一覧画面の「開く」ボタン全てに対して、イベントを設定する
+    // ボタン押下で作業実績情報を取得し、作業実績画面に反映させる
     $("td button").each(function (i, element) {
         $(element).on("click", function () {
             getSagyoJisseki($(element).attr("id"));
         });
     });
 
-    // 作業実績情報を取得し、作業実績画面に反映させる
     function getSagyoJisseki(sagyoKeikakuId) {
         $.ajax({
             type: "Post",
@@ -18,6 +16,7 @@ $(document).ready(function () {
             data: { "SagyoKeikakuId": sagyoKeikakuId },
             dataType: "json"
         }).done(function (response) {
+            $("#SagyoKeikakuId").val(response["sagyoKeikakuId"]);
             $("#SagyoChakushuNichiji").val(response["sagyoChakushuNichiji"]);
             $("#SagyoChakushuSekininshaMei").val(response["sagyoChakushuSekininshaMei"]);
             $("#SagyoKanryoNichiji").val(response["sagyoKanryoNichiji"]);

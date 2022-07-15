@@ -76,7 +76,10 @@
 </div>
 
 @*作業実績画面*@
-<partial name="_SagyoJissekiPartial" model="@Model.SagyoJissekiDisplayContent" />
+<form asp-controller="SagyoJisseki" asp-action="Update" method="post">
+    <partial name="_SagyoJissekiPartial" model="@Model.SagyoJissekiDisplayContent" />
+</form>
+
 
 @section scripts{
     <script src="~/js/sagyoJisseki.js"></script>

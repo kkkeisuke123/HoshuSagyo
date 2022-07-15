@@ -5,6 +5,8 @@ namespace HoshuSagyo.Models.DisplayModels
     public class SagyoJissekiDisplayContent
     {
         // 画面項目
+        public int SagyoKeikakuId { get; set; }
+
         [DataType(DataType.DateTime)]
         [Display(Name = "作業着手日時")]
         public DateTime? SagyoChakushuNichiji { get; set; }
