@@ -89,10 +89,8 @@ namespace HoshuSagyo.Controllers
                 }
 
                 gamen.Id = sagyoKeikaku.Id;
-                gamen.SagyoKaishiBi = sagyoKeikaku.SagyoKaishiNichiji;
-                gamen.SagyoKaishiJikan = sagyoKeikaku.SagyoKaishiNichiji;
-                gamen.SagyoShuryoBi = sagyoKeikaku.SagyoShuryoNichiji;
-                gamen.SagyoShuryoJikan = sagyoKeikaku.SagyoShuryoNichiji;
+                gamen.SagyoKaishiNichiji = sagyoKeikaku.SagyoKaishiNichiji;
+                gamen.SagyoShuryoNichiji = sagyoKeikaku.SagyoShuryoNichiji;
                 gamen.Keito = sagyoKeikaku.Keito;
                 gamen.Kankatsu = sagyoKeikaku.Kankatsu;
                 gamen.SagyoShubetsu = sagyoKeikaku.SagyoShubetsu;
@@ -135,8 +133,8 @@ namespace HoshuSagyo.Controllers
             // 登録処理を実行
             var sagyoKeikakuModel = new SagyoKeikakuModel
             {
-                SagyoKaishiNichiji = InputValue.SagyoKaishiBi.Add(InputValue.SagyoKaishiJikan.TimeOfDay),
-                SagyoShuryoNichiji = InputValue.SagyoShuryoBi.Add(InputValue.SagyoShuryoJikan.TimeOfDay),
+                SagyoKaishiNichiji = InputValue.SagyoKaishiNichiji,
+                SagyoShuryoNichiji = InputValue.SagyoShuryoNichiji,
                 Keito = InputValue.Keito,
                 Kankatsu = InputValue.Kankatsu,
                 SagyoShubetsu = InputValue.SagyoShubetsu,
@@ -183,8 +181,8 @@ namespace HoshuSagyo.Controllers
                 return Redirect($"/SagyoKeikaku/Edit/{InputValue.Id}");
             }
 
-            sagyoKeikaku.SagyoKaishiNichiji = InputValue.SagyoKaishiBi.Add(InputValue.SagyoKaishiJikan.TimeOfDay);
-            sagyoKeikaku.SagyoShuryoNichiji = InputValue.SagyoShuryoBi.Add(InputValue.SagyoShuryoJikan.TimeOfDay);
+            sagyoKeikaku.SagyoKaishiNichiji = InputValue.SagyoKaishiNichiji;
+            sagyoKeikaku.SagyoShuryoNichiji = InputValue.SagyoShuryoNichiji;
             sagyoKeikaku.Keito = InputValue.Keito;
             sagyoKeikaku.Kankatsu = InputValue.Kankatsu;
             sagyoKeikaku.SagyoShubetsu = InputValue.SagyoShubetsu;

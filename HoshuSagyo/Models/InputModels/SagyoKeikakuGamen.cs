@@ -18,25 +18,15 @@ namespace HoshuSagyo.Models.InputModels
         // 画面項目
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "作業開始日を入力してください")]
-        [DataType(DataType.Date)]
-        [Display(Name = "作業開始日")]
-        public DateTime SagyoKaishiBi { get; set; }
+        [Required(ErrorMessage = "作業開始日時を入力してください")]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "作業開始日時")]
+        public DateTime SagyoKaishiNichiji { get; set; }
 
-        [Required(ErrorMessage = "作業開始時間を入力してください")]
-        [DataType(DataType.Time)]
-        [Display(Name = "作業開始時間")]
-        public DateTime SagyoKaishiJikan { get; set; }
-
-        [Required(ErrorMessage = "作業終了日を入力してください")]
-        [DataType(DataType.Date)]
-        [Display(Name = "作業終了日")]
-        public DateTime SagyoShuryoBi { get; set; }
-
-        [Required(ErrorMessage = "作業終了時間を入力してください")]
-        [DataType(DataType.Time)]
-        [Display(Name = "作業終了時間")]
-        public DateTime SagyoShuryoJikan { get; set; }
+        [Required(ErrorMessage = "作業終了日時を入力してください")]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "作業終了日時")]
+        public DateTime SagyoShuryoNichiji { get; set; }
 
         [Required(ErrorMessage = "系統を入力してください")]
         [Display(Name = "系統")]
