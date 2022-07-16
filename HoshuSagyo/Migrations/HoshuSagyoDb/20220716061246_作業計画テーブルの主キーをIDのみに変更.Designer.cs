@@ -4,6 +4,7 @@ using HoshuSagyo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HoshuSagyo.Migrations.HoshuSagyoDb
 {
     [DbContext(typeof(HoshuSagyoDbContext))]
-    partial class HoshuSagyoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220716061246_作業計画テーブルの主キーをIDのみに変更")]
+    partial class 作業計画テーブルの主キーをIDのみに変更
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

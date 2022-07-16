@@ -6,6 +6,7 @@ namespace HoshuSagyo.Models.Transactions
     public class SagyoKeikakuModel : EntityBase
     {
         // ID
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
         public int Id { get; set; }
