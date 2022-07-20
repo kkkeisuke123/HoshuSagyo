@@ -69,12 +69,12 @@ namespace HoshuSagyo.Helper
 
             // 進捗
             modelBuilder.Entity<ShinchokuModel>().HasData(
-                new ShinchokuModel { Shinchoku = 1, ShinchokuName = "未着手", RegisterDateTime = now, UpdateDateTime = now },
-                new ShinchokuModel { Shinchoku = 2, ShinchokuName = "着手済", RegisterDateTime = now, UpdateDateTime = now },
-                new ShinchokuModel { Shinchoku = 3, ShinchokuName = "完了済", RegisterDateTime = now, UpdateDateTime = now },
-                new ShinchokuModel { Shinchoku = 4, ShinchokuName = "着手遅延", RegisterDateTime = now, UpdateDateTime = now },
-                new ShinchokuModel { Shinchoku = 5, ShinchokuName = "終了遅延", RegisterDateTime = now, UpdateDateTime = now },
-                new ShinchokuModel { Shinchoku = 6, ShinchokuName = "中止", RegisterDateTime = now, UpdateDateTime = now }
+                new ShinchokuModel { Shinchoku = 1, ShinchokuName = "未着手", ShinchokuColor = "#FFFFFF", RegisterDateTime = now, UpdateDateTime = now },
+                new ShinchokuModel { Shinchoku = 2, ShinchokuName = "着手済", ShinchokuColor = "#00BFFF", RegisterDateTime = now, UpdateDateTime = now },
+                new ShinchokuModel { Shinchoku = 3, ShinchokuName = "完了済", ShinchokuColor = "#90EE90", RegisterDateTime = now, UpdateDateTime = now },
+                new ShinchokuModel { Shinchoku = 4, ShinchokuName = "着手遅延", ShinchokuColor = "#FFFF00", RegisterDateTime = now, UpdateDateTime = now },
+                new ShinchokuModel { Shinchoku = 5, ShinchokuName = "終了遅延", ShinchokuColor = "#FFA500", RegisterDateTime = now, UpdateDateTime = now },
+                new ShinchokuModel { Shinchoku = 6, ShinchokuName = "中止", ShinchokuColor = "#D3D3D3", RegisterDateTime = now, UpdateDateTime = now }
                 );
         }
     }

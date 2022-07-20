@@ -11,5 +11,9 @@ namespace HoshuSagyo.Models.Master
         // 進捗名
         [Required]
         public string ShinchokuName { get; set; }
+
+        // 進捗を表す色(16進数)
+        [Required]
+        public string ShinchokuColor { get; set; }
     }
 }

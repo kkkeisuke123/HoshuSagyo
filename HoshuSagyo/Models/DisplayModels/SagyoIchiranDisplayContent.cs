@@ -22,5 +22,8 @@
 
         // 作業内容
         public string SagyoNaiyo { get; set; }
+
+        // 作業進捗
+        public string SagyoShinchoku { get; set; }
     }
 }
