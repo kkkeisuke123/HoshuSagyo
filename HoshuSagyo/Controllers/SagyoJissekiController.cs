@@ -17,14 +17,14 @@ namespace HoshuSagyo.Controllers
         /// <summary>
         /// 作業実績情報を更新します
         /// </summary>
-        /// <param name="InputValue">作業実績画面の入力項目</param>
+        /// <param name="inputValue">作業実績画面の入力項目</param>
         /// <returns></returns>
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult Update(SagyoJissekiDisplayContent InputValue)
+        public IActionResult Update(SagyoJissekiDisplayContent inputValue)
         {
             // 更新処理を実行
-            var sagyoJisseki = _hoshuSagyoDbContext.T_SagyoJisseki.FirstOrDefault(x => x.SagyoKeikakuId == InputValue.SagyoKeikakuId);
+            var sagyoJisseki = _hoshuSagyoDbContext.T_SagyoJisseki.FirstOrDefault(x => x.SagyoKeikakuId == inputValue.SagyoKeikakuId);
             if (sagyoJisseki == null)
             {
                 // エラー
@@ -34,10 +34,10 @@ namespace HoshuSagyo.Controllers
 
             // 進捗を確認する
             // 作業着手日時と責任者名が入力済の場合
-            if (InputValue.SagyoChakushuNichiji != null && InputValue.SagyoChakushuSekininshaMei != null)
+            if (inputValue.SagyoChakushuNichiji != null && inputValue.SagyoChakushuSekininshaMei != null)
             {
                 // 作業完了日時と責任者名が入力済の場合
-                if (InputValue.SagyoKanryoNichiji != null && InputValue.SagyoKanryoSekininshaMei != null)
+                if (inputValue.SagyoKanryoNichiji != null && inputValue.SagyoKanryoSekininshaMei != null)
                 {
                     // 完了済
                     sagyoJisseki.Shinchoku = (int)Shinchoku.Kanryozumi;
@@ -50,10 +50,10 @@ namespace HoshuSagyo.Controllers
             }
 
             // 画面の入力項目を反映させる
-            sagyoJisseki.SagyoChakushuNichiji = InputValue.SagyoChakushuNichiji;
-            sagyoJisseki.SagyoChakushuSekininshaMei = InputValue.SagyoChakushuSekininshaMei ?? string.Empty;
-            sagyoJisseki.SagyoKanryoNichiji = InputValue.SagyoKanryoNichiji;
-            sagyoJisseki.SagyoKanryoSekininshaMei = InputValue.SagyoKanryoSekininshaMei ?? string.Empty;
+            sagyoJisseki.SagyoChakushuNichiji = inputValue.SagyoChakushuNichiji;
+            sagyoJisseki.SagyoChakushuSekininshaMei = inputValue.SagyoChakushuSekininshaMei ?? string.Empty;
+            sagyoJisseki.SagyoKanryoNichiji = inputValue.SagyoKanryoNichiji;
+            sagyoJisseki.SagyoKanryoSekininshaMei = inputValue.SagyoKanryoSekininshaMei ?? string.Empty;
 
             // DB更新
             _hoshuSagyoDbContext.Update(sagyoJisseki);

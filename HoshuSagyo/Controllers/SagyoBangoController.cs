@@ -24,7 +24,7 @@ namespace HoshuSagyo.Controllers
         }
 
         [HttpPost]
-        public IActionResult DoSagyoBangoFuyo([FromForm] SagyoBangoGamen inputValue)
+        public IActionResult DoSagyoBangoFuyo(SagyoBangoGamen inputValue)
         {
             // 指定された期間の長さを確認する
             if (IsKikannai(inputValue.SagyoBiFrom, inputValue.SagyoBiTo) == false)

@@ -4,7 +4,6 @@ using HoshuSagyo.Models.DisplayModels;
 using HoshuSagyo.Models.InputModels;
 using HoshuSagyo.Models.Transactions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HoshuSagyo.Controllers
 {
@@ -29,39 +28,39 @@ namespace HoshuSagyo.Controllers
         /// <summary>
         /// 作業計画編集画面を表示します
         /// </summary>
-        /// <param name="Id">作業計画ID</param>
+        /// <param name="id">作業計画ID</param>
         /// <returns>作業計画編集画面</returns>
-        public IActionResult Edit(int Id)
+        public IActionResult Edit(int id)
         {
-            return View(Initialize(Id));
+            return View(Initialize(id));
         }
 
         /// <summary>
         /// 作業計画参照画面を表示します
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="id"></param>
         /// <returns>作業計画参照画面</returns>
-        public IActionResult Reference(int Id)
+        public IActionResult Reference(int id)
         {
-            return View(Initialize(Id));
+            return View(Initialize(id));
         }
 
         /// <summary>
         /// 作業計画削除画面を表示します
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="id"></param>
         /// <returns>作業計画削除画面</returns>
-        public IActionResult Delete(int Id)
+        public IActionResult Delete(int id)
         {
-            return View(Initialize(Id));
+            return View(Initialize(id));
         }
 
         /// <summary>
         /// 画面の初期化を行います
         /// </summary>
-        /// <param name="Id">作業計画ID</param>
+        /// <param name="id">作業計画ID</param>
         /// <returns>作業計画画面モデル</returns>
-        private SagyoKeikakuGamen Initialize(int? Id)
+        private SagyoKeikakuGamen Initialize(int? id)
         {
             // 作業計画画面のモデル
             var gamen = new SagyoKeikakuGamen();
@@ -78,9 +77,9 @@ namespace HoshuSagyo.Controllers
             onseiOto.OnseiOtoShosaiList = _hoshuSagyoDbContext.M_OnseiOtoShosai.Select(x => new Itemlist { Value = x.Id, Text = x.Message }).ToList();
 
             // 作業計画IDが指定された場合（編集、参照、削除）、作業計画を取得する
-            if (Id != null)
+            if (id != null)
             {
-                var sagyoKeikaku = _hoshuSagyoDbContext.T_SagyoKeikaku.FirstOrDefault(x => x.Id == Id);
+                var sagyoKeikaku = _hoshuSagyoDbContext.T_SagyoKeikaku.FirstOrDefault(x => x.Id == id);
                 if (sagyoKeikaku == null)
                 {
                     // エラー
@@ -121,31 +120,31 @@ namespace HoshuSagyo.Controllers
         /// <summary>
         /// 作業計画の登録処理を行います
         /// </summary>
-        /// <param name="InputValue">作業計画登録画面の入力項目</param>
-        /// <param name="SagyoKaishiOnseiOtoShosaiId">音声応答詳細メッセージのID</param>
-        /// <param name="SagyoShuryoOnseiOtoShosaiId">音声応答詳細メッセージのID</param>
+        /// <param name="inputValue">作業計画登録画面の入力項目</param>
+        /// <param name="sagyoKaishiOnseiOtoShosaiId">音声応答詳細メッセージのID</param>
+        /// <param name="sagyoShuryoOnseiOtoShosaiId">音声応答詳細メッセージのID</param>
         /// <returns>作業計画完了画面</returns>
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult DoToroku(SagyoKeikakuGamen InputValue,
-            string SagyoKaishiOnseiOtoShosaiId, string SagyoShuryoOnseiOtoShosaiId)
+        public IActionResult DoToroku(SagyoKeikakuGamen inputValue,
+            string sagyoKaishiOnseiOtoShosaiId, string sagyoShuryoOnseiOtoShosaiId)
         {
             // 登録処理を実行
             var sagyoKeikakuModel = new SagyoKeikakuModel
             {
-                SagyoKaishiNichiji = InputValue.SagyoKaishiNichiji,
-                SagyoShuryoNichiji = InputValue.SagyoShuryoNichiji,
-                Keito = InputValue.Keito,
-                Kankatsu = InputValue.Kankatsu,
-                SagyoShubetsu = InputValue.SagyoShubetsu,
-                SagyoBasho = InputValue.SagyoBasho,
-                SagyoNaiyo = InputValue.SagyoNaiyo,
-                JishaSekininshaMei = InputValue.JishaSekininshaMei,
-                JishaSagyoinSu = InputValue.JishaSagyoinSu,
-                KyoryokuGaishaSekininshaMei = InputValue.KyoryokuGaishaSekininshaMei,
-                KyoryokuGaishaSagyoinSu = InputValue.KyoryokuGaishaSagyoinSu,
-                SagyoKaishiOnseiOtoShosaiId = int.Parse(SagyoKaishiOnseiOtoShosaiId),
-                SagyoShuryoOnseiOtoShosaiId = int.Parse(SagyoShuryoOnseiOtoShosaiId)
+                SagyoKaishiNichiji = inputValue.SagyoKaishiNichiji,
+                SagyoShuryoNichiji = inputValue.SagyoShuryoNichiji,
+                Keito = inputValue.Keito,
+                Kankatsu = inputValue.Kankatsu,
+                SagyoShubetsu = inputValue.SagyoShubetsu,
+                SagyoBasho = inputValue.SagyoBasho,
+                SagyoNaiyo = inputValue.SagyoNaiyo,
+                JishaSekininshaMei = inputValue.JishaSekininshaMei,
+                JishaSagyoinSu = inputValue.JishaSagyoinSu,
+                KyoryokuGaishaSekininshaMei = inputValue.KyoryokuGaishaSekininshaMei,
+                KyoryokuGaishaSagyoinSu = inputValue.KyoryokuGaishaSagyoinSu,
+                SagyoKaishiOnseiOtoShosaiId = int.Parse(sagyoKaishiOnseiOtoShosaiId),
+                SagyoShuryoOnseiOtoShosaiId = int.Parse(sagyoShuryoOnseiOtoShosaiId)
             };
 
             _hoshuSagyoDbContext.Add(sagyoKeikakuModel);
@@ -163,37 +162,37 @@ namespace HoshuSagyo.Controllers
         /// <summary>
         /// 作業計画の編集処理を行います
         /// </summary>
-        /// <param name="InputValue">作業計画編集画面の入力項目</param>
-        /// <param name="SagyoKaishiOnseiOtoShosaiId">音声応答詳細メッセージのID</param>
-        /// <param name="SagyoShuryoOnseiOtoShosaiId">音声応答詳細メッセージのID</param>
+        /// <param name="inputValue">作業計画編集画面の入力項目</param>
+        /// <param name="sagyoKaishiOnseiOtoShosaiId">音声応答詳細メッセージのID</param>
+        /// <param name="sagyoShuryoOnseiOtoShosaiId">音声応答詳細メッセージのID</param>
         /// <returns>作業計画完了画面</returns>
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult DoEdit(SagyoKeikakuGamen InputValue,
-            string SagyoKaishiOnseiOtoShosaiId, string SagyoShuryoOnseiOtoShosaiId)
+        public IActionResult DoEdit(SagyoKeikakuGamen inputValue,
+            string sagyoKaishiOnseiOtoShosaiId, string sagyoShuryoOnseiOtoShosaiId)
         {
             // 編集処理を実行
-            var sagyoKeikaku = _hoshuSagyoDbContext.T_SagyoKeikaku.FirstOrDefault(x => x.Id == InputValue.Id);
+            var sagyoKeikaku = _hoshuSagyoDbContext.T_SagyoKeikaku.FirstOrDefault(x => x.Id == inputValue.Id);
             if (sagyoKeikaku == null)
             {
                 // エラー
                 ModelState.AddModelError(string.Empty, "作業計画が存在しません");
-                return Redirect($"/SagyoKeikaku/Edit/{InputValue.Id}");
+                return Redirect($"/SagyoKeikaku/Edit/{inputValue.Id}");
             }
 
-            sagyoKeikaku.SagyoKaishiNichiji = InputValue.SagyoKaishiNichiji;
-            sagyoKeikaku.SagyoShuryoNichiji = InputValue.SagyoShuryoNichiji;
-            sagyoKeikaku.Keito = InputValue.Keito;
-            sagyoKeikaku.Kankatsu = InputValue.Kankatsu;
-            sagyoKeikaku.SagyoShubetsu = InputValue.SagyoShubetsu;
-            sagyoKeikaku.SagyoBasho = InputValue.SagyoBasho;
-            sagyoKeikaku.SagyoNaiyo = InputValue.SagyoNaiyo;
-            sagyoKeikaku.JishaSekininshaMei = InputValue.JishaSekininshaMei;
-            sagyoKeikaku.JishaSagyoinSu = InputValue.JishaSagyoinSu;
-            sagyoKeikaku.KyoryokuGaishaSekininshaMei = InputValue.KyoryokuGaishaSekininshaMei;
-            sagyoKeikaku.KyoryokuGaishaSagyoinSu = InputValue.KyoryokuGaishaSagyoinSu;
-            sagyoKeikaku.SagyoKaishiOnseiOtoShosaiId = int.Parse(SagyoKaishiOnseiOtoShosaiId);
-            sagyoKeikaku.SagyoShuryoOnseiOtoShosaiId = int.Parse(SagyoShuryoOnseiOtoShosaiId);
+            sagyoKeikaku.SagyoKaishiNichiji = inputValue.SagyoKaishiNichiji;
+            sagyoKeikaku.SagyoShuryoNichiji = inputValue.SagyoShuryoNichiji;
+            sagyoKeikaku.Keito = inputValue.Keito;
+            sagyoKeikaku.Kankatsu = inputValue.Kankatsu;
+            sagyoKeikaku.SagyoShubetsu = inputValue.SagyoShubetsu;
+            sagyoKeikaku.SagyoBasho = inputValue.SagyoBasho;
+            sagyoKeikaku.SagyoNaiyo = inputValue.SagyoNaiyo;
+            sagyoKeikaku.JishaSekininshaMei = inputValue.JishaSekininshaMei;
+            sagyoKeikaku.JishaSagyoinSu = inputValue.JishaSagyoinSu;
+            sagyoKeikaku.KyoryokuGaishaSekininshaMei = inputValue.KyoryokuGaishaSekininshaMei;
+            sagyoKeikaku.KyoryokuGaishaSagyoinSu = inputValue.KyoryokuGaishaSagyoinSu;
+            sagyoKeikaku.SagyoKaishiOnseiOtoShosaiId = int.Parse(sagyoKaishiOnseiOtoShosaiId);
+            sagyoKeikaku.SagyoShuryoOnseiOtoShosaiId = int.Parse(sagyoShuryoOnseiOtoShosaiId);
             sagyoKeikaku.UpdateDateTime = DateTime.Now;
 
             _hoshuSagyoDbContext.Update(sagyoKeikaku);
@@ -211,19 +210,19 @@ namespace HoshuSagyo.Controllers
         /// <summary>
         /// 作業計画の削除処理を行います
         /// </summary>
-        /// <param name="Id">作業計画ID</param>
+        /// <param name="id">作業計画ID</param>
         /// <returns>作業計画完了画面</returns>
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult DoDelete(string Id)
+        public IActionResult DoDelete(string id)
         {
             // 削除処理を実行
-            var sagyoKeikaku = _hoshuSagyoDbContext.T_SagyoKeikaku.FirstOrDefault(x => x.Id == int.Parse(Id));
+            var sagyoKeikaku = _hoshuSagyoDbContext.T_SagyoKeikaku.FirstOrDefault(x => x.Id == int.Parse(id));
             if (sagyoKeikaku == null)
             {
                 // エラー
                 ModelState.AddModelError(string.Empty, "作業計画が存在しません");
-                return Redirect($"/SagyoKeikaku/Delete/{Id}");
+                return Redirect($"/SagyoKeikaku/Delete/{id}");
             }
 
             _hoshuSagyoDbContext.Remove(sagyoKeikaku);

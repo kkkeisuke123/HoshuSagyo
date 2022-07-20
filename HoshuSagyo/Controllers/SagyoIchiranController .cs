@@ -4,7 +4,6 @@ using HoshuSagyo.Models.DisplayModels;
 using HoshuSagyo.Models.InputModels;
 using HoshuSagyo.Models.Transactions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace HoshuSagyo.Controllers
 {
@@ -25,7 +24,7 @@ namespace HoshuSagyo.Controllers
 
 
         [HttpPost]
-        public IActionResult Search([FromForm] SagyoIchiranGamen inputValue)
+        public IActionResult Search(SagyoIchiranGamen inputValue)
         {
             // 条件をもとに検索する
             IQueryable<SagyoKeikakuModel> result = _hoshuSagyoDbContext.T_SagyoKeikaku.Select(x => x);
