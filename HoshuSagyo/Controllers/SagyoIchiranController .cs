@@ -78,6 +78,12 @@ namespace HoshuSagyo.Controllers
                 content.KankatsuName = _hoshuSagyoDbContext.M_Kankatsu.FirstOrDefault(x => x.Kankatsu == sagyoKeikaku.Kankatsu).KankatsuName;
                 content.SagyoShubetsuName = _hoshuSagyoDbContext.M_SagyoShubetsu.FirstOrDefault(x => x.SagyoShubetsu == sagyoKeikaku.SagyoShubetsu).SagyoShubetsuName;
                 content.SagyoBashoName = _hoshuSagyoDbContext.M_SagyoBasho.FirstOrDefault(x => x.SagyoBasho == sagyoKeikaku.SagyoBasho).SagyoBashoName;
+                
+                var shinchokuRow = _hoshuSagyoDbContext.M_Shinchoku.FirstOrDefault(
+                    x => x.Shinchoku ==
+                        _hoshuSagyoDbContext.T_SagyoJisseki.FirstOrDefault(x => x.SagyoKeikakuId == sagyoKeikaku.Id).Shinchoku);
+                content.ShinchokuName = shinchokuRow.ShinchokuName;
+                content.ShinchokuColor = shinchokuRow.ShinchokuColor;
 
                 gamen.SagyoIchiranDisplayContents.Add(content);
             }

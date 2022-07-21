@@ -6,16 +6,14 @@
 <td>@Model.SagyoShubetsuName</td>
 <td>@Model.SagyoBashoName</td>
 <td>@Model.SagyoNaiyo</td>
+<td style="background-color: @Model.ShinchokuColor">@Model.ShinchokuName</td>
 <td>
     <a asp-controller="SagyoKeikaku" asp-action="Edit" asp-route-id="@Model.Id">修正</a>
     <span>|</span>
     <a asp-controller="SagyoKeikaku" asp-action="Reference" asp-route-id="@Model.Id">参照</a>
     <span>|</span>
     <a asp-controller="SagyoKeikaku" asp-action="Delete" asp-route-id="@Model.Id">削除</a>
-</td>
-<td>
-    <!-- 作業実績画面をモーダルで開くボタン -->
-    <button id="@Model.Id" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-	    入力
-    </button>
+    <span>|</span>
+    <!-- 作業実績画面をモーダルで開くリンク -->
+    <a id="@Model.Id" class="open-modal-link" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">進捗</a>
 </td>

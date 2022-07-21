@@ -24,6 +24,9 @@
         public string SagyoNaiyo { get; set; }
 
         // 作業進捗
-        public string SagyoShinchoku { get; set; }
+        public string ShinchokuName { get; set; }
+
+        // 作業進捗の色(16進数)
+        public string ShinchokuColor { get; set; }
     }
 }
