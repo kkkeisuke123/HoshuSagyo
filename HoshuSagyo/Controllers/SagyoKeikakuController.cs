@@ -3,10 +3,12 @@ using HoshuSagyo.Models.Components;
 using HoshuSagyo.Models.DisplayModels;
 using HoshuSagyo.Models.InputModels;
 using HoshuSagyo.Models.Transactions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HoshuSagyo.Controllers
 {
+    [Authorize]
     public class SagyoKeikakuController : Controller
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;

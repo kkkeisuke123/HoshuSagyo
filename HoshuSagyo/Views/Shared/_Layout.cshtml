@@ -1,5 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
 @inject IAuthorizationService Authorization
+@inject SignInManager<IdentityUser> SignInManager
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -23,18 +25,21 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SagyoKeikaku" asp-action="Index">作業計画</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SagyoIchiran" asp-action="Index">作業一覧</a>
-                        </li>
-
+                        @*ログインしたユーザーにのみ、以下のリンクを表示させる*@
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="SagyoKeikaku" asp-action="Index">作業計画</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="SagyoIchiran" asp-action="Index">作業一覧</a>
+                            </li>
+                        }
+                        
+                        @*指令系統のユーザーにのみ、以下のリンクを表示させる*@
                         @{
                             var keitoPolicy = await Authorization.AuthorizeAsync(User, "KeitoPolicy");
                         }
-                        
-                        @* 指令系統のユーザーにのみ、以下のリンクを表示させる *@
                         @if (keitoPolicy.Succeeded)
                         {
                              <li class="nav-item">
