@@ -34,14 +34,12 @@ namespace HoshuSagyo.Controllers
                 return View("Index");
             }
 
-            // クレームから系統と管轄を取得
-            int keito = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Keito").Value);
+            // クレームから管轄を取得
             int kankatsu = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Kankatsu").Value);
 
             // 指定された期間の作業計画を取得する
             var sagyoKeikakuModels = _hoshuSagyoDbContext.T_SagyoKeikaku.Where(x => 
                 x.SagyoBango == null &&
-                x.Keito == keito &&
                 x.Kankatsu == kankatsu &&
                 x.SagyoKaishiNichiji.Date >= inputValue.SagyoBiFrom.Date &&
                 x.SagyoKaishiNichiji.Date <= inputValue.SagyoBiTo.Date);
@@ -101,7 +99,6 @@ namespace HoshuSagyo.Controllers
                 sagyoBangoModel = new SagyoBangoModel
                 {
                     Nengetsu = nengetsu,
-                    Keito = keito,
                     Kankatsu = kankatsu,
                     SaishuBango = saishuBango,
                     RegisterDateTime = now,

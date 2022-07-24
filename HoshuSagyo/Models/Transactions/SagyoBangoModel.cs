@@ -8,10 +8,6 @@ namespace HoshuSagyo.Models.Transactions
         [Required]
         public string Nengetsu { get; set; }
 
-        // 系統
-        [Required]
-        public int Keito { get; set; }
-
         // 管轄
         [Required]
         public int Kankatsu { get; set; }

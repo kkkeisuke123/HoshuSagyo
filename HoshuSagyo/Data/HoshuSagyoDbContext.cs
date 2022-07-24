@@ -67,7 +67,7 @@ namespace HoshuSagyo.Data
                 c => new { c.Keito, c.Kankatsu });
 
             modelBuilder.Entity<SagyoBangoModel>().HasKey(
-                c => new { c.Nengetsu, c.Keito, c.Kankatsu });
+                c => new { c.Nengetsu, c.Kankatsu });
 
             // マスタ情報作成
             modelBuilder.SeedMasterTable();
