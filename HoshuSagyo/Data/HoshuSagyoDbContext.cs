@@ -68,6 +68,9 @@ namespace HoshuSagyo.Data
 
             // マスタ情報作成
             modelBuilder.SeedMasterTable();
+
+            // トランザクション情報作成
+            modelBuilder.SeedTransactionTable();
         }
     }
 }

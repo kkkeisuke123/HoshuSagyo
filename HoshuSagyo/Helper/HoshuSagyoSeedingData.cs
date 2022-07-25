@@ -1,4 +1,5 @@
 ﻿using HoshuSagyo.Models.Master;
+using HoshuSagyo.Models.Transactions;
 using Microsoft.EntityFrameworkCore;
 
 namespace HoshuSagyo.Helper
@@ -11,8 +12,6 @@ namespace HoshuSagyo.Helper
         /// <param name="modelBuilder"></param>
         public static void SeedMasterTable(this ModelBuilder modelBuilder)
         {
-            var now = DateTime.Now;
-
             // 系統情報
             modelBuilder.Entity<KeitoModel>().HasData(
                 new KeitoModel { Keito = 1, KeitoName = "指令" },
@@ -75,6 +74,24 @@ namespace HoshuSagyo.Helper
                 new ShinchokuModel { Shinchoku = 4, ShinchokuName = "着手遅延", ShinchokuColor = "#FFFF00" },
                 new ShinchokuModel { Shinchoku = 5, ShinchokuName = "終了遅延", ShinchokuColor = "#FFA500" },
                 new ShinchokuModel { Shinchoku = 6, ShinchokuName = "中止", ShinchokuColor = "#D3D3D3" }
+                );
+        }
+
+        /// <summary>
+        /// トランザクション情報を登録する
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        public static void SeedTransactionTable(this ModelBuilder modelBuilder)
+        {
+            // 締切
+            modelBuilder.Entity<ShimekiriModel>().HasData(
+                new ShimekiriModel { Kankatsu = 1, ShimekiriZumiBi = DateTime.Now },
+                new ShimekiriModel { Kankatsu = 2, ShimekiriZumiBi = DateTime.Now },
+                new ShimekiriModel { Kankatsu = 3, ShimekiriZumiBi = DateTime.Now },
+                new ShimekiriModel { Kankatsu = 4, ShimekiriZumiBi = DateTime.Now },
+                new ShimekiriModel { Kankatsu = 5, ShimekiriZumiBi = DateTime.Now },
+                new ShimekiriModel { Kankatsu = 6, ShimekiriZumiBi = DateTime.Now },
+                new ShimekiriModel { Kankatsu = 7, ShimekiriZumiBi = DateTime.Now }
                 );
         }
     }
