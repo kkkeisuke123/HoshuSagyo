@@ -63,9 +63,6 @@ namespace HoshuSagyo.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // 複合主キーの設定
-            modelBuilder.Entity<ShimekiriModel>().HasKey(
-                c => new { c.Keito, c.Kankatsu });
-
             modelBuilder.Entity<SagyoBangoModel>().HasKey(
                 c => new { c.Nengetsu, c.Kankatsu });
 

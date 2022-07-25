@@ -9,11 +9,7 @@ namespace HoshuSagyo.Models.Transactions
         public DateTime? ShimekiriZumiBi { get; set; }
 
         // 管轄
-        [Required]
+        [Key]
         public int Kankatsu { get; set; }
-
-        // 系統
-        [Required]
-        public int Keito { get; set; }
     }
 }
