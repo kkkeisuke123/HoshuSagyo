@@ -13,7 +13,15 @@
     <a asp-controller="SagyoKeikaku" asp-action="Reference" asp-route-id="@Model.Id">参照</a>
     <span>|</span>
     <a asp-controller="SagyoKeikaku" asp-action="Delete" asp-route-id="@Model.Id">削除</a>
-    <span>|</span>
-    <!-- 作業実績画面をモーダルで開くリンク -->
-    <a id="@Model.Id" class="open-modal-link" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">進捗</a>
+    @if (Model.ShinchokuName != null)
+    {
+        <span>|</span>
+         @*作業実績画面をモーダルで開くリンク*@
+        <a id="@Model.Id" class="open-modal-link" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">進捗</a>
+    }
+    else
+    {
+        @*リンクを表示せず、空白で隙間を埋める*@
+        <span>&ensp;&emsp;&emsp;</span>
+    }
 </td>
