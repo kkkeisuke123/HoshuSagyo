@@ -26,7 +26,7 @@ namespace HoshuSagyo.Controllers
         [HttpPost]
         public IActionResult DoSagyoBangoFuyo(SagyoBangoGamen inputValue)
         {
-            // 指定された期間の長さを確認する
+            // 指定された期間の長さをチェックする
             if (IsKikannai(inputValue.SagyoBiFrom, inputValue.SagyoBiTo) == false)
             {
                 // エラー
@@ -36,6 +36,14 @@ namespace HoshuSagyo.Controllers
 
             // クレームから管轄を取得
             int kankatsu = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Kankatsu").Value);
+
+            // 指定された期間が締切済みであるかチェックする
+            if (IsShimekiriZumi(inputValue.SagyoBiTo, kankatsu) == false)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, "締切済日よりも未来の日時が指定されています");
+                return View("Index");
+            }
 
             // 指定された期間の作業計画を取得する
             var sagyoKeikakuModels = _hoshuSagyoDbContext.T_SagyoKeikaku.Where(x => 
@@ -119,7 +127,7 @@ namespace HoshuSagyo.Controllers
         }
 
         /// <summary>
-        /// 期間の長さを確認する
+        /// 期間の長さをチェックする
         /// </summary>
         /// <param name="from">日付（から）</param>
         /// <param name="to">日付（まで）</param>
@@ -133,5 +141,18 @@ namespace HoshuSagyo.Controllers
             return fromYM == toYM;
         }
 
+        /// <summary>
+        /// 指定された日時が締切済であることをチェックする
+        /// </summary>
+        /// <param name="datetime">日時</param>
+        /// <param name="kankatsu">管轄コード</param>
+        /// <returns></returns>
+        private bool IsShimekiriZumi(DateTime datetime, int kankatsu)
+        {
+            // 締切済日を取得
+            var shimekiri = _hoshuSagyoDbContext.T_Shimekiri.FirstOrDefault(x => x.Kankatsu == kankatsu);
+
+            return datetime <= shimekiri.ShimekiriZumiBi;
+        }
     }
 }
