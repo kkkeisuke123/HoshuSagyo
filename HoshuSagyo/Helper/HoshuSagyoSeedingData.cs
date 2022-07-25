@@ -85,13 +85,13 @@ namespace HoshuSagyo.Helper
         {
             // 締切
             modelBuilder.Entity<ShimekiriModel>().HasData(
-                new ShimekiriModel { Kankatsu = 1, ShimekiriZumiBi = DateTime.Now },
-                new ShimekiriModel { Kankatsu = 2, ShimekiriZumiBi = DateTime.Now },
-                new ShimekiriModel { Kankatsu = 3, ShimekiriZumiBi = DateTime.Now },
-                new ShimekiriModel { Kankatsu = 4, ShimekiriZumiBi = DateTime.Now },
-                new ShimekiriModel { Kankatsu = 5, ShimekiriZumiBi = DateTime.Now },
-                new ShimekiriModel { Kankatsu = 6, ShimekiriZumiBi = DateTime.Now },
-                new ShimekiriModel { Kankatsu = 7, ShimekiriZumiBi = DateTime.Now }
+                new ShimekiriModel { Kankatsu = 1, ShimekiriZumiBi = DateTime.Now.Date },
+                new ShimekiriModel { Kankatsu = 2, ShimekiriZumiBi = DateTime.Now.Date },
+                new ShimekiriModel { Kankatsu = 3, ShimekiriZumiBi = DateTime.Now.Date },
+                new ShimekiriModel { Kankatsu = 4, ShimekiriZumiBi = DateTime.Now.Date },
+                new ShimekiriModel { Kankatsu = 5, ShimekiriZumiBi = DateTime.Now.Date },
+                new ShimekiriModel { Kankatsu = 6, ShimekiriZumiBi = DateTime.Now.Date },
+                new ShimekiriModel { Kankatsu = 7, ShimekiriZumiBi = DateTime.Now.Date }
                 );
         }
     }
