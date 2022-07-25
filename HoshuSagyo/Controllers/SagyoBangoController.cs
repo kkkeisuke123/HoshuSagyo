@@ -63,7 +63,8 @@ namespace HoshuSagyo.Controllers
 
             // 対象月に作業番号を割り当てられる数を超えていないか確認する
             string nengetsu = inputValue.SagyoBiFrom.Year.ToString("d2") + inputValue.SagyoBiFrom.Month.ToString("d2");
-            var sagyoBangoModel = _hoshuSagyoDbContext.T_SagyoBango.FirstOrDefault(x => x.Nengetsu == nengetsu);
+            var sagyoBangoModel = _hoshuSagyoDbContext.T_SagyoBango.FirstOrDefault(
+                x => x.Nengetsu == nengetsu && x.Kankatsu == kankatsu);
 
             // 後続の処理で、指定された範囲（月）の最終番号を格納する
             int saishuBango = 0;
