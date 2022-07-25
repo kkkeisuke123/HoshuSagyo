@@ -35,11 +35,9 @@ namespace HoshuSagyo.Controllers
         private ShimekiriModel GetShimekiriModel()
         {
             // 締切情報を取得
-            int keito = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Keito").Value);
             int kankatsu = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Kankatsu").Value);
 
-            return _hoshuSagyoDbContext.T_Shimekiri.FirstOrDefault(row =>
-                    row.Keito == keito && row.Kankatsu == kankatsu);
+            return _hoshuSagyoDbContext.T_Shimekiri.FirstOrDefault(row => row.Kankatsu == kankatsu);
         }
     }
 }
