@@ -19,22 +19,22 @@
                         <div class="col">
                             <span>作業開始：</span>
                         </div>
-                        <div class="col">
+                        <div class="col-5">
                             <div class="form-floating">
                                 <select id="kaishiShubetsuList" asp-for="@Model.SagyoKaishiOnseiOtoShubetsu" class="form-control" asp-items="@(new SelectList(Model.OnseiOtoList, "Value", "Text"))" value="@Model.SagyoKaishiOnseiOtoShubetsu">
-                                    <option value="-1">選択してください</option>
+                                    <option value="" hidden>選択してください</option>
                                 </select>
                                 <label asp-for="@Model.SagyoKaishiOnseiOtoShubetsu"></label>
-                                <span asp-validation-for="@Model.SagyoKaishiOnseiOtoShubetsu" class="text-danger"></span>
+                                <span id="kaishi-shubetsu-error" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-5">
                             <div class="form-floating">
                                 <select id="kaishiMessageList" asp-for="@Model.SagyoKaishiOnseiOtoShosaiId" class="form-control" asp-items="@(new SelectList(Model.OnseiOtoShosaiList, "Value", "Text"))" value="@Model.SagyoKaishiOnseiOtoShosaiId">
-                                    <option value="-1">選択してください</option>
+                                    <option value="" hidden>選択してください</option>
                                 </select>
                                 <label asp-for="@Model.SagyoKaishiOnseiOtoShosaiId"></label>
-                                <span asp-validation-for="@Model.SagyoKaishiOnseiOtoShosaiId" class="text-danger"></span>
+                                <span id="kaishi-message-error" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -42,29 +42,30 @@
                         <div class="col">
                             <span>作業終了：</span>
                         </div>
-                        <div class="col">
+                        <div class="col-5">
                             <div class="form-floating">
                                 <select id="shuryoShubetsuList" asp-for="@Model.SagyoShuryoOnseiOtoShubetsu" class="form-control" asp-items="@(new SelectList(Model.OnseiOtoList, "Value", "Text"))" value="@Model.SagyoShuryoOnseiOtoShubetsu">
-                                    <option value="-1">選択してください</option>
+                                    <option value="" hidden>選択してください</option>
                                 </select>
                                 <label asp-for="@Model.SagyoShuryoOnseiOtoShubetsu"></label>
-                                <span asp-validation-for="@Model.SagyoShuryoOnseiOtoShubetsu" class="text-danger"></span>
+                                <span id="shuryo-shubetsu-error" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-5">
                             <div class="form-floating">
                                 <select id="shuryoMessageList" asp-for="@Model.SagyoShuryoOnseiOtoShosaiId" class="form-control" asp-items="@(new SelectList(Model.OnseiOtoShosaiList, "Value", "Text"))" value="@Model.SagyoShuryoOnseiOtoShosaiId">
-                                    <option value="-1">選択してください</option>
+                                    <option value="" hidden>選択してください</option>
                                 </select>
                                 <label asp-for="@Model.SagyoShuryoOnseiOtoShosaiId"></label>
-                                <span asp-validation-for="@Model.SagyoShuryoOnseiOtoShosaiId" class="text-danger"></span>
+                                <span id="shuryo-message-error" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
                 </div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">設定して閉じる</button>
+				<button id="btn-setting" type="button" class="btn btn-primary">設定</button>
+                <button id="btn-close" type="button" class="btn btn-dark" data-bs-dismiss="modal">閉じる</button>
 			</div>
 		</div>
 	</div>
