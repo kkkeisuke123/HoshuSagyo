@@ -33,28 +33,28 @@
         </div>
         <div class="form-floating">
             <select asp-for="@Model.Keito" class="form-control" asp-items="@(new SelectList(Model.KeitoList, "Value", "Text"))" value="@Model.Keito">
-                <option value="">選択してください</option>
+                <option value="" hidden>選択してください</option>
             </select>
             <label asp-for="@Model.Keito"></label>
             <span asp-validation-for="@Model.Keito" class="text-danger"></span>
         </div>
         <div class="form-floating">
             <select asp-for="@Model.Kankatsu" class="form-control" asp-items="@(new SelectList(Model.KankatsuList, "Value", "Text"))" value="@Model.Kankatsu">
-                <option value="">選択してください</option>
+                <option value="" hidden>選択してください</option>
             </select>
             <label asp-for="@Model.Kankatsu"></label>
             <span asp-validation-for="@Model.Kankatsu" class="text-danger"></span>
         </div>
         <div class="form-floating">
             <select asp-for="@Model.SagyoShubetsu" class="form-control" asp-items="@(new SelectList(Model.SagyoShubetsuList, "Value", "Text"))" value="@Model.SagyoShubetsu">
-                <option value="">選択してください</option>
+                <option value="" hidden>選択してください</option>
             </select>
             <label asp-for="@Model.SagyoShubetsu"></label>
             <span asp-validation-for="@Model.SagyoShubetsu" class="text-danger"></span>
         </div>
         <div class="form-floating">
             <select asp-for="@Model.SagyoBasho" class="form-control" asp-items="@(new SelectList(Model.SagyoBashoList, "Value", "Text"))" value="@Model.SagyoBasho">
-                <option value="">選択してください</option>
+                <option value="" hidden>選択してください</option>
             </select>
             <label asp-for="@Model.SagyoBasho"></label>
             <span asp-validation-for="@Model.SagyoBasho" class="text-danger"></span>
