@@ -18,32 +18,40 @@ namespace HoshuSagyo.Controllers
             _hoshuSagyoDbContext = hoshuSagyoDbContext;
         }
 
+        /// <summary>
+        /// 作業一覧画面を表示します
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             // 作業計画を取得し、一覧表示する
             return View(Initialize(_hoshuSagyoDbContext.T_SagyoKeikaku));
         }
 
-
+        /// <summary>
+        /// 作業計画の検索を行います
+        /// </summary>
+        /// <param name="inputValue">作業一覧画面の入力項目</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Search(SagyoIchiranGamen inputValue)
         {
             // 条件をもとに検索する
             IQueryable<SagyoKeikakuModel> result = _hoshuSagyoDbContext.T_SagyoKeikaku.Select(x => x);
 
-            if (inputValue.Keito != 0)
+            if (inputValue.Keito is not null)
             {
                 result = result.Where(x => x.Keito == inputValue.Keito);
             }
-            if (inputValue.Kankatsu != 0)
+            if (inputValue.Kankatsu is not null)
             {
                 result = result.Where(x => x.Kankatsu == inputValue.Kankatsu);
             }
-            if (inputValue.SagyoShubetsu != 0)
+            if (inputValue.SagyoShubetsu is not null)
             {
                 result = result.Where(x => x.SagyoShubetsu == inputValue.SagyoShubetsu);
             }
-            if (inputValue.SagyoBasho != 0)
+            if (inputValue.SagyoBasho is not null)
             {
                 result = result.Where(x => x.SagyoBasho == inputValue.SagyoBasho);
             }
@@ -56,7 +64,11 @@ namespace HoshuSagyo.Controllers
             return View("Index", Initialize(result));
         }
 
-
+        /// <summary>
+        /// 作業一覧画面に表示する内容を用意します
+        /// </summary>
+        /// <param name="sagyoKeikakuModels"></param>
+        /// <returns></returns>
         private SagyoIchiranGamen Initialize(IQueryable<SagyoKeikakuModel> sagyoKeikakuModels)
         {
             var gamen = new SagyoIchiranGamen();

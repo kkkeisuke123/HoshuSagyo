@@ -20,18 +20,18 @@ namespace HoshuSagyo.Models.InputModels
 
         // 検索条件
         [Display(Name = "系統")]
-        public int Keito { get; set; }
+        public int? Keito { get; set; }
 
         [Display(Name = "管轄")]
-        public int Kankatsu { get; set; }
+        public int? Kankatsu { get; set; }
 
         [Display(Name = "作業種別")]
-        public int SagyoShubetsu { get; set; }
+        public int? SagyoShubetsu { get; set; }
 
         [Display(Name = "作業場所")]
-        public int SagyoBasho { get; set; }
+        public int? SagyoBasho { get; set; }
 
         [Display(Name = "作業内容")]
-        public string SagyoNaiyo { get; set; }
+        public string? SagyoNaiyo { get; set; }
     }
 }

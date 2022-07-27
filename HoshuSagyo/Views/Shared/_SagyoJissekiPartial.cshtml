@@ -2,29 +2,31 @@
 
 <!-- モーダルウィンドウ -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="staticBackdropLabel">作業実績画面</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">作業実績画面</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                 <input asp-for="@Model.SagyoKeikakuId" type="hidden" />
-				<div class="container-fluid">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="col">
                             <span>作業着手：</span>
                         </div>
-                        <div class="col">
+                        <div class="col-5">
                             <div class="form-floating">
                                 <input asp-for="@Model.SagyoChakushuNichiji" class="form-control" value="" />
                                 <label asp-for="@Model.SagyoChakushuNichiji"></label>
+                                <span asp-validation-for="@Model.SagyoChakushuNichiji" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-5">
                             <div class="form-floating">
                                 <input asp-for="@Model.SagyoChakushuSekininshaMei" class="form-control" value=""/>
                                 <label asp-for="@Model.SagyoChakushuSekininshaMei"></label>
+                                <span asp-validation-for="@Model.SagyoChakushuSekininshaMei" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -32,13 +34,13 @@
                         <div class="col">
                             <span>作業完了：</span>
                         </div>
-                        <div class="col">
+                        <div class="col-5">
                             <div class="form-floating">
                                 <input asp-for="@Model.SagyoKanryoNichiji" class="form-control" value="" />
                                 <label asp-for="@Model.SagyoKanryoNichiji"></label>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-5">
                             <div class="form-floating">
                                 <input asp-for="@Model.SagyoKanryoSekininshaMei" class="form-control" value=""/>
                                 <label asp-for="@Model.SagyoKanryoSekininshaMei"></label>
@@ -46,11 +48,11 @@
                         </div>
                     </div>
                 </div>
-			</div>
-			<div class="modal-footer">
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">更新</button>
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-			</div>
-		</div>
-	</div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">更新</button>
+                <button id="btn-close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            </div>
+        </div>
+    </div>
 </div>
