@@ -7,7 +7,8 @@ namespace HoshuSagyo.Models.DisplayModels
     {
         // ドロップダウンリスト
         public List<Itemlist> OnseiOtoList;
-        public List<Itemlist> OnseiOtoShosaiList;
+        public List<Itemlist> KaishiOnseiOtoShosaiList;
+        public List<Itemlist> ShuryoOnseiOtoShosaiList;
 
         // 画面項目
         [Display(Name = "音声応答種別")]

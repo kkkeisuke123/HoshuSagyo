@@ -76,7 +76,6 @@ namespace HoshuSagyo.Controllers
             gamen.SagyoShubetsuList = _hoshuSagyoDbContext.M_SagyoShubetsu.Select(x => new Itemlist { Value = x.SagyoShubetsu, Text = x.SagyoShubetsuName }).ToList();
             gamen.SagyoBashoList = _hoshuSagyoDbContext.M_SagyoBasho.Select(x => new Itemlist { Value = x.SagyoBasho, Text = x.SagyoBashoName }).ToList();
             onseiOto.OnseiOtoList = _hoshuSagyoDbContext.M_OnseiOto.Select(x => new Itemlist { Value = x.OtoShubetsu, Text = x.OtoShubetsuNaiyo }).ToList();
-            onseiOto.OnseiOtoShosaiList = _hoshuSagyoDbContext.M_OnseiOtoShosai.Select(x => new Itemlist { Value = x.Id, Text = x.Message }).ToList();
 
             // 作業計画IDが指定された場合（編集、参照、削除）、作業計画を取得する
             if (id != null)
@@ -89,6 +88,7 @@ namespace HoshuSagyo.Controllers
                     return gamen;
                 }
 
+                // 作業計画の情報を設定
                 gamen.Id = sagyoKeikaku.Id;
                 gamen.SagyoKaishiNichiji = sagyoKeikaku.SagyoKaishiNichiji;
                 gamen.SagyoShuryoNichiji = sagyoKeikaku.SagyoShuryoNichiji;
@@ -103,6 +103,7 @@ namespace HoshuSagyo.Controllers
                 gamen.KyoryokuGaishaSekininshaMei = sagyoKeikaku.KyoryokuGaishaSekininshaMei;
                 gamen.KyoryokuGaishaSagyoinSu = sagyoKeikaku.KyoryokuGaishaSagyoinSu;
 
+                // 音声応答の情報を設定
                 onseiOto.SagyoKaishiOnseiOtoShubetsu = 
                     _hoshuSagyoDbContext.M_OnseiOtoShosai.FirstOrDefault(
                         x => x.Id == sagyoKeikaku.SagyoKaishiOnseiOtoShosaiId).OtoShubetsu;
@@ -111,6 +112,16 @@ namespace HoshuSagyo.Controllers
                     _hoshuSagyoDbContext.M_OnseiOtoShosai.FirstOrDefault(
                         x => x.Id == sagyoKeikaku.SagyoShuryoOnseiOtoShosaiId).OtoShubetsu;
                 onseiOto.SagyoShuryoOnseiOtoShosaiId = sagyoKeikaku.SagyoShuryoOnseiOtoShosaiId;
+
+                // 音声応答詳細メッセージプルダウンの項目を設定
+                onseiOto.KaishiOnseiOtoShosaiList =
+                    _hoshuSagyoDbContext.M_OnseiOtoShosai.Where(
+                        x => x.OtoShubetsu == onseiOto.SagyoKaishiOnseiOtoShubetsu).Select(
+                            y => new Itemlist { Value = y.Id, Text = y.Message }).ToList();
+                onseiOto.ShuryoOnseiOtoShosaiList =
+                    _hoshuSagyoDbContext.M_OnseiOtoShosai.Where(
+                        x => x.OtoShubetsu == onseiOto.SagyoShuryoOnseiOtoShubetsu).Select(
+                            y => new Itemlist { Value = y.Id, Text = y.Message }).ToList();
             }
 
             gamen.onseiOtoDisplayContent = onseiOto;

@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-5">
                             <div class="form-floating">
-                                <select id="kaishiMessageList" asp-for="@Model.SagyoKaishiOnseiOtoShosaiId" class="form-control" asp-items="@(new SelectList(Model.OnseiOtoShosaiList, "Value", "Text"))" value="@Model.SagyoKaishiOnseiOtoShosaiId">
+                                <select id="kaishiMessageList" asp-for="@Model.SagyoKaishiOnseiOtoShosaiId" class="form-control" asp-items="@(Model.KaishiOnseiOtoShosaiList is null ? null : new SelectList(Model.KaishiOnseiOtoShosaiList, "Value", "Text"))" value="@Model.SagyoKaishiOnseiOtoShosaiId">
                                     <option value="" hidden>選択してください</option>
                                 </select>
                                 <label asp-for="@Model.SagyoKaishiOnseiOtoShosaiId"></label>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-5">
                             <div class="form-floating">
-                                <select id="shuryoMessageList" asp-for="@Model.SagyoShuryoOnseiOtoShosaiId" class="form-control" asp-items="@(new SelectList(Model.OnseiOtoShosaiList, "Value", "Text"))" value="@Model.SagyoShuryoOnseiOtoShosaiId">
+                                <select id="shuryoMessageList" asp-for="@Model.SagyoShuryoOnseiOtoShosaiId" class="form-control" asp-items="@(Model.ShuryoOnseiOtoShosaiList is null ? null : new SelectList(Model.ShuryoOnseiOtoShosaiList, "Value", "Text"))" value="@Model.SagyoShuryoOnseiOtoShosaiId">
                                     <option value="" hidden>選択してください</option>
                                 </select>
                                 <label asp-for="@Model.SagyoShuryoOnseiOtoShosaiId"></label>
