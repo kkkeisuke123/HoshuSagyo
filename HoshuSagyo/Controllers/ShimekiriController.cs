@@ -1,4 +1,5 @@
 ﻿using HoshuSagyo.Data;
+using HoshuSagyo.Models.InputModels;
 using HoshuSagyo.Models.Transactions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,29 +15,58 @@ namespace HoshuSagyo.Controllers
             _hoshuSagyoDbContext = hoshuSagyoDbContext;
         }
 
+        /// <summary>
+        /// 締切画面を表示します
+        /// </summary>
+        /// <returns>締切画面</returns>
         public IActionResult Index()
         {
-            return View(GetShimekiriModel());
+            return View(GetShimekiriGamenInfo());
         }
 
+        /// <summary>
+        /// 締切処理を行います
+        /// </summary>
+        /// <param name="inputValue">締切画面の入力項目</param>
+        /// <returns>締切完了画面</returns>
         [HttpPost]
-        public IActionResult DoShimekiri(string shimekiriBi)
+        public IActionResult DoShimekiri(ShimekiriGamen inputValue)
         {
-            // 締切処理を実行
             var shimekiriModel = GetShimekiriModel();
-            var shimekiriBiDateTime = DateTime.ParseExact(shimekiriBi, "yyyy/MM/dd", null);
-            shimekiriModel.ShimekiriZumiBi = shimekiriBiDateTime;
+            shimekiriModel.ShimekiriZumiBi = inputValue.NewShimekiriZumiBi;
+
             _hoshuSagyoDbContext.Update(shimekiriModel);
             _hoshuSagyoDbContext.SaveChanges();
 
             return View("Result", shimekiriModel);
         }
 
+        /// <summary>
+        /// 締切画面の情報を取得します
+        /// </summary>
+        /// <returns>締切画面情報</returns>
+        private ShimekiriGamen GetShimekiriGamenInfo()
+        {
+            var shimekiriModel = GetShimekiriModel();
+            var shimekiriGamenInfo = new ShimekiriGamen
+            {
+                OldShimekiriZumiBi = shimekiriModel.ShimekiriZumiBi,
+                NewShimekiriZumiBi = shimekiriModel.ShimekiriZumiBi.AddMonths(1)
+            };
+
+            return shimekiriGamenInfo;
+        }
+
+        /// <summary>
+        /// 締切テーブルからユーザーの系統に紐づくレコードを取得します
+        /// </summary>
+        /// <returns>締切モデル</returns>
         private ShimekiriModel GetShimekiriModel()
         {
-            // 締切情報を取得
+            // クレームから管轄を取得
             int kankatsu = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Kankatsu").Value);
 
+            // 締切情報を取得
             return _hoshuSagyoDbContext.T_Shimekiri.FirstOrDefault(row => row.Kankatsu == kankatsu);
         }
     }

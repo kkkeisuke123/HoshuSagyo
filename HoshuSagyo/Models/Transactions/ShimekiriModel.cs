@@ -6,7 +6,7 @@ namespace HoshuSagyo.Models.Transactions
     {
         // 締切済日
         [Required]
-        public DateTime? ShimekiriZumiBi { get; set; }
+        public DateTime ShimekiriZumiBi { get; set; }
 
         // 管轄
         [Key]

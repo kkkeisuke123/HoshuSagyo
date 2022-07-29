@@ -1,4 +1,4 @@
-﻿@model HoshuSagyo.Models.Transactions.ShimekiriModel
+﻿@model HoshuSagyo.Models.InputModels.ShimekiriGamen
 @{
     ViewData["Title"] = "締切解除画面";
 }
@@ -6,14 +6,14 @@
 <div class="text-center">
     <h1 class="display-6">締切解除画面</h1>
     <form asp-controller="ShimekiriKaijo" asp-action="DoShimekiriKaijo" method="post">
-        <div class="container p-3 w-50">
+        <div class="container p-3 w-25">
             <div class="form-floating">
-                <input id="now-shimekiriBi" class="form-control" name="shimekiriBi" type="text" value="@Model.ShimekiriZumiBi.Value.ToShortDateString()" disabled="disabled"/>
-                <label for="now-shimekiriBi">現在の締切済日</label>
+                <input asp-for="@Model.OldShimekiriZumiBi" class="form-control" value="@Model.OldShimekiriZumiBi.ToString("yyyy-MM-dd")" disabled="disabled" />
+                <label asp-for="@Model.OldShimekiriZumiBi"></label>
             </div>
             <div class="form-floating">
-                <input id="new-shimekiriBi" class="form-control" name="shimekiriBi" type="text" value="@Model.ShimekiriZumiBi.Value.AddMonths(-1).ToShortDateString()"/>
-                <label for="new-shimekiriBi">新しい締切日</label>
+                <input asp-for="@Model.NewShimekiriZumiBi" class="form-control" value="@Model.NewShimekiriZumiBi.ToString("yyyy-MM-dd")" />
+                <label asp-for="@Model.NewShimekiriZumiBi"></label>
             </div>
         </div>
         <input type="submit" class="btn btn-success" value="締切解除"/>
