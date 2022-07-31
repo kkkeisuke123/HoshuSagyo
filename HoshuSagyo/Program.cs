@@ -13,14 +13,6 @@ builder.Services.AddDbContext<HoshuSagyoDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// trueの場合、メールアドレスの認証が必要になる。
-// そのような機能はないため、falseを設定する。
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-//    .AddEntityFrameworkStores<ApplicationDbContext>();
-//builder.Services.AddControllersWithViews();
-
-
-
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
