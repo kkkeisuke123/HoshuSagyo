@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HoshuSagyo.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class SagyoJissekiController : Controller
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
@@ -20,7 +21,6 @@ namespace HoshuSagyo.Controllers
         /// <param name="inputValue">作業実績画面の入力項目</param>
         /// <returns></returns>
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
         public IActionResult Update(SagyoJissekiDisplayContent inputValue)
         {
             // 更新処理を実行

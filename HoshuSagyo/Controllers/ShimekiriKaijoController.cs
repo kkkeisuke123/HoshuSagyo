@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HoshuSagyo.Controllers
 {
     [Authorize(Policy = "KeitoPolicy")]
+    [AutoValidateAntiforgeryToken]
     public class ShimekiriKaijoController : Controller
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;

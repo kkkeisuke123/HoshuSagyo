@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HoshuSagyo.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class SagyoKeikakuController : Controller
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
@@ -138,7 +139,6 @@ namespace HoshuSagyo.Controllers
         /// <param name="sagyoShuryoOnseiOtoShosaiId">音声応答詳細メッセージのID</param>
         /// <returns>作業計画完了画面</returns>
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
         public IActionResult DoToroku(SagyoKeikakuGamen inputValue,
             string sagyoKaishiOnseiOtoShosaiId, string sagyoShuryoOnseiOtoShosaiId)
         {
@@ -180,7 +180,6 @@ namespace HoshuSagyo.Controllers
         /// <param name="sagyoShuryoOnseiOtoShosaiId">音声応答詳細メッセージのID</param>
         /// <returns>作業計画完了画面</returns>
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
         public IActionResult DoEdit(SagyoKeikakuGamen inputValue,
             string sagyoKaishiOnseiOtoShosaiId, string sagyoShuryoOnseiOtoShosaiId)
         {
@@ -226,7 +225,6 @@ namespace HoshuSagyo.Controllers
         /// <param name="id">作業計画ID</param>
         /// <returns>作業計画完了画面</returns>
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
         public IActionResult DoDelete(string id)
         {
             // 削除処理を実行
