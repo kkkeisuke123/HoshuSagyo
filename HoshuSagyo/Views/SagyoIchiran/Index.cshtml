@@ -6,7 +6,7 @@
 <div class="text-center">
     <h1 class="display-6">作業一覧画面</h1>
     <form asp-controller="SagyoIchiran" asp-action="Search" method="post">
-        <div class="row justify-content-start">
+        <div class="row justify-content-start p-3">
             <div class="col-md-2">
                 <div class="form-floating">
                     <select asp-for="@Model.Keito" class="form-control" asp-items="@(new SelectList(Model.KeitoList, "Value", "Text"))">
