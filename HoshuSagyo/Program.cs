@@ -70,26 +70,4 @@ app.MapRazorPages();
 //app.UseExceptionHandler("/Home/Error");
 app.UseStatusCodePagesWithReExecute("/Home/Error/{0}");
 
-// Seed処理
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var loggerFactory = services.GetRequiredService<ILoggerFactory>();
-    try
-    {
-        var context = services.GetRequiredService<ApplicationDbContext>();
-        var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
-        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-        // DBにロール情報を登録する
-        await ContextSeed.SeedRolesAsync(userManager, roleManager);
-        // DBにデフォルトユーザーを登録する
-        await ContextSeed.SeedSuperAdminAsync(userManager, roleManager);
-    }
-    catch (Exception ex)
-    {
-        var logger = loggerFactory.CreateLogger<Program>();
-        logger.LogError(ex, "An error occurred seeding the DB.");
-    }
-}
-
 app.Run();

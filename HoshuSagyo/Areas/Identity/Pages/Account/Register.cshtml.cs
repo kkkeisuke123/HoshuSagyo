@@ -123,9 +123,6 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    // DBにデフォルトのロールを追加
-                    await _userManager.AddToRoleAsync(user, Enums.Roles.Mitei.ToString());
-
                     // DBにユーザー情報を追加
                     var now = DateTime.Now;
                     _hoshuSagyoDbContext.M_UserInfo.Add(new UserInfoModel
