@@ -33,6 +33,15 @@ namespace HoshuSagyo.Controllers
         [HttpPost]
         public IActionResult DoShimekiriKaijo(ShimekiriGamen inputValue)
         {
+            // パラメータをチェック
+            if (ModelState.IsValid == false)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, "入力が正しく行われていません");
+                return View("Index", GetShimekiriKaijoGamenInfo());
+            }
+
+            // 締切解除処理
             var shimekiriModel = GetShimekiriModel();
             shimekiriModel.ShimekiriZumiBi = inputValue.NewShimekiriZumiBi;
 

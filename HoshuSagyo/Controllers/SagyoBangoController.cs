@@ -36,6 +36,14 @@ namespace HoshuSagyo.Controllers
         [HttpPost]
         public IActionResult DoSagyoBangoFuyo(SagyoBangoGamen inputValue)
         {
+            // パラメータをチェック
+            if (ModelState.IsValid == false)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, "入力が正しく行われていません");
+                return View("Index");
+            }
+
             // クレームから管轄を取得
             int kankatsu = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Kankatsu").Value);
 

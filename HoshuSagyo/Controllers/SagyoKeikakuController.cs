@@ -142,6 +142,14 @@ namespace HoshuSagyo.Controllers
         public IActionResult DoToroku(SagyoKeikakuGamen inputValue,
             string sagyoKaishiOnseiOtoShosaiId, string sagyoShuryoOnseiOtoShosaiId)
         {
+            // パラメータをチェック
+            if (ModelState.IsValid == false)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, "入力が正しく行われていません");
+                return View("Index", Initialize(null));
+            }
+
             // 登録処理を実行
             var sagyoKeikakuModel = new SagyoKeikakuModel
             {
@@ -183,6 +191,14 @@ namespace HoshuSagyo.Controllers
         public IActionResult DoEdit(SagyoKeikakuGamen inputValue,
             string sagyoKaishiOnseiOtoShosaiId, string sagyoShuryoOnseiOtoShosaiId)
         {
+            // パラメータをチェック
+            if (ModelState.IsValid == false)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, "入力が正しく行われていません");
+                return View("Edit", Initialize(inputValue.Id));
+            }
+
             // 編集処理を実行
             var sagyoKeikaku = _hoshuSagyoDbContext.T_SagyoKeikaku.FirstOrDefault(x => x.Id == inputValue.Id);
             if (sagyoKeikaku == null)
