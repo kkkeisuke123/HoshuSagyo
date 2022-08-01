@@ -27,7 +27,7 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"ID'{_userManager.GetUserId(User)}'を持つユーザーを読み込めません。");
             }
 
             return Page();

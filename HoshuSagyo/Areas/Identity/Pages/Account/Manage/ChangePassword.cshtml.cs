@@ -54,7 +54,7 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account.Manage
             /// </summary>
             [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "現在のパスワード")]
             public string OldPassword { get; set; }
 
             /// <summary>
@@ -62,9 +62,9 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "{0}は少なくとも{2}文字、最大{1}文字の長さでなければなりません。", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "新しいパスワード")]
             public string NewPassword { get; set; }
 
             /// <summary>
@@ -72,8 +72,8 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "新しいパスワード(確認)")]
+            [Compare("NewPassword", ErrorMessage = "新しいパスワードと確認パスワードが一致しません。")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -82,7 +82,7 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"ID'{_userManager.GetUserId(User)}'を持つユーザーを読み込めません。");
             }
 
             var hasPassword = await _userManager.HasPasswordAsync(user);
@@ -104,7 +104,7 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"ID'{_userManager.GetUserId(User)}'を持つユーザーを読み込めません。");
             }
 
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
@@ -118,8 +118,8 @@ namespace HoshuSagyo.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            _logger.LogInformation("ユーザーがパスワードを正常に変更しました。");
+            StatusMessage = "あなたのパスワードは変更されました。";
 
             return RedirectToPage();
         }
