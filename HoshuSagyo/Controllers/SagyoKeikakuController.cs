@@ -1,10 +1,12 @@
 ﻿using HoshuSagyo.Data;
+using HoshuSagyo.Enums;
 using HoshuSagyo.Models.Components;
 using HoshuSagyo.Models.DisplayModels;
 using HoshuSagyo.Models.InputModels;
 using HoshuSagyo.Models.Transactions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HoshuSagyo.Controllers
 {
@@ -150,7 +152,7 @@ namespace HoshuSagyo.Controllers
                 return View("Index", Initialize(null));
             }
 
-            // 登録処理を実行
+            // 作業計画の登録処理を実行
             var sagyoKeikakuModel = new SagyoKeikakuModel
             {
                 SagyoKaishiNichiji = inputValue.SagyoKaishiNichiji,
@@ -171,6 +173,34 @@ namespace HoshuSagyo.Controllers
             _hoshuSagyoDbContext.Add(sagyoKeikakuModel);
             _hoshuSagyoDbContext.SaveChanges();
 
+            // 登録直後の作業計画のIDを取得する（作業実績テーブルへの登録に使用するため）
+            int lastSagyoKeikakuId = _hoshuSagyoDbContext.T_SagyoKeikaku.Max(x => x.Id);
+
+            // 作業実績の登録処理を実行
+            var sagyoJissekiModel = new SagyoJissekiModel
+            {
+                // 自動採番のカラム（SagyoKeikakuId）に明示的に値を代入
+                SagyoKeikakuId = lastSagyoKeikakuId,
+                Shinchoku = (int)Shinchoku.Michakushu,
+                SagyoChakushuSekininshaMei = string.Empty,
+                SagyoKanryoSekininshaMei = string.Empty
+            };
+
+            _hoshuSagyoDbContext.Add(sagyoJissekiModel);
+
+            // 自動採番のカラムに明示的に値を代入する場合、以下の処理が必要
+            _hoshuSagyoDbContext.Database.OpenConnection();
+            try
+            {
+                _hoshuSagyoDbContext.Database.ExecuteSqlRaw("SET IDENTITY_INSERT HoshuSagyo.dbo.T_SagyoJisseki ON");
+                _hoshuSagyoDbContext.SaveChanges();
+                _hoshuSagyoDbContext.Database.ExecuteSqlRaw("SET IDENTITY_INSERT HoshuSagyo.dbo.T_SagyoJisseki OFF");
+            }
+            finally
+            {
+                _hoshuSagyoDbContext.Database.CloseConnection();
+            }
+            
             // 完了画面に表示する内容をセット
             ViewData["SyoriNaiyo"] = "登録";
 
@@ -243,7 +273,7 @@ namespace HoshuSagyo.Controllers
         [HttpPost]
         public IActionResult DoDelete(string id)
         {
-            // 削除処理を実行
+            // 作業計画情報の存在チェック
             var sagyoKeikaku = _hoshuSagyoDbContext.T_SagyoKeikaku.FirstOrDefault(x => x.Id == int.Parse(id));
             if (sagyoKeikaku == null)
             {
@@ -252,7 +282,18 @@ namespace HoshuSagyo.Controllers
                 return Redirect($"/SagyoKeikaku/Delete/{id}");
             }
 
+            // 作業実績情報の存在チェック
+            var sagyoJisseki = _hoshuSagyoDbContext.T_SagyoJisseki.FirstOrDefault(x => x.SagyoKeikakuId == int.Parse(id));
+            if (sagyoJisseki == null)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, "作業実績が存在しません");
+                return Redirect($"/SagyoKeikaku/Delete/{id}");
+            }
+
+            // 削除処理を実行
             _hoshuSagyoDbContext.Remove(sagyoKeikaku);
+            _hoshuSagyoDbContext.Remove(sagyoJisseki);
             _hoshuSagyoDbContext.SaveChanges();
 
             // 完了画面に表示する内容をセット
