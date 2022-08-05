@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "画面の説明";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h3>締切画面</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/13_締切画面/01.png" alt="締切画面" />
+            <p>
+                指定した日付まで、締切を行います。<br />
+                締切られた日付は「締切済日」という扱いになり、締切済日に登録されている作業計画に対して、作業番号を付与できるようになります。<br />
+                管轄（東京、神奈川、千葉...etc）毎に締切情報を保持しており、ログイン中のユーザーの管轄に対応する締切データを処理します。<br />
+                戻るボタンを押下すると、メニュー画面に遷移します。
+            </p>
+            <a class="btn btn-outline-success" asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="">戻る</a>
+        </div>
+    </div>
+</div>

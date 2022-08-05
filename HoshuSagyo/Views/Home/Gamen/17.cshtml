@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "画面の説明";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h3>作業番号付与画面</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/17_作業番号付与画面/01.png" alt="作業番号付与画面" />
+            <p>
+                指定された範囲の作業計画に対して、作業番号の付与を行います。<br />
+                作業番号の付与は、締切済日にのみ実施できます。<br />
+                管轄（東京、神奈川、千葉...etc）毎に作業番号情報を保持しており、ログイン中のユーザーの管轄に対応する作業番号データを処理します。<br />
+                戻るボタンを押下すると、メニュー画面に遷移します。
+            </p>
+            <a class="btn btn-outline-success" asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="">戻る</a>
+        </div>
+    </div>
+</div>

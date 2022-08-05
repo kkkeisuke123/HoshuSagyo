@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "アプリについて";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_AboutNav" />
+        </div>
+        <div class="col-md-9">
+            <h3>概要</h3>
+            <p>
+                保守作業システムは、保守業務に必要な作業をまとめたものです。<br />
+                保守業務は、以下のステップで実行されます。
+            </p>
+            <ol>
+                <li>作業計画の登録</li>
+                <li>作業計画の締切</li>
+                <li>作業計画に作業番号を付与</li>
+                <li>作業計画の着手報告</li>
+                <li>作業計画の完了報告</li>
+            </ol>
+            <p>
+                詳細は
+                <a asp-controller="Home" asp-action="TransitionDiagram">画面遷移図</a>、
+                <a asp-controller="Home" asp-action="ScreenExplanation">画面の説明</a>、
+                <a asp-controller="Home" asp-action="OperationMethod">操作方法</a>
+                をご確認ください。
+            </p>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/about.js"></script>
+}

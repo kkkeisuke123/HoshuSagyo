@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "画面の説明";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h3>ユーザー登録画面</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/01_ユーザー登録画面/01.png" alt="ユーザー登録画面" />
+            <p>
+                ユーザー登録画面は、保守作業システムで使用するユーザーを登録するための画面です。<br />
+                ユーザー名とパスワードに加え、系統（指令、現地、未定）や管轄（東京、神奈川、千葉...etc）も入力してください。
+            </p>
+            <a class="btn btn-outline-success" asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="">戻る</a>
+        </div>
+    </div>
+</div>

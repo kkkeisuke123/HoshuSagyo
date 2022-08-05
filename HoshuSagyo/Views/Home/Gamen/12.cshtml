@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "画面の説明";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h3>作業一覧画面</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/12_作業一覧画面/01.png" alt="作業一覧画面" />
+            <p>
+                作業計画を一覧表示します。<br />
+                条件を指定して絞り込むことが出来ます。<br />
+                作業進捗列は、進捗状況によって色分けされて表示されます。
+            </p>
+            <a class="btn btn-outline-success" asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="">戻る</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "画面の説明";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_AboutNav" />
+        </div>
+        <div class="col-md-9">
+            <h3>画面一覧</h3>
+            <ol>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="1">ユーザー登録画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="2">ログイン画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="3">ユーザー管理画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="4">メニュー画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="5">作業計画登録画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="6">作業計画登録完了画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="7">作業計画編集画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="8">作業計画編集完了画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="9">作業計画参照画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="10">作業計画削除画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="11">作業計画削除完了画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="12">作業一覧画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="13">締切画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="14">締切完了画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="15">締切解除画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="16">締切解除完了画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="17">作業番号付与画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="18">作業番号付与完了画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="19">音声応答画面</a></li>
+                <li><a asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="20">作業実績画面</a></li>
+
+            </ol>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/about.js"></script>
+}

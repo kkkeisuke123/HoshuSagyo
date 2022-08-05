@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "画面の説明";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h3>作業計画登録画面</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/05_作業計画登録画面/01.png" alt="作業計画登録画面" />
+            <p>
+                作業計画の登録を行います。<br />
+                作業番号は登録時点では未確定なので、表示されません。
+            </p>
+            <a class="btn btn-outline-success" asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="">戻る</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "画面の説明";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h3>締切解除画面</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/15_締切解除画面/01.png" alt="締切解除画面" />
+            <p>
+                指定した日付まで、締切解除を行います。<br />
+                締切解除された日付は締切済日ではなくなり、その日付に登録されている作業計画に対して、作業番号が付与できなくなります。<br />
+                戻るボタンを押下すると、メニュー画面に遷移します。
+            </p>
+            <a class="btn btn-outline-success" asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="">戻る</a>
+        </div>
+    </div>
+</div>

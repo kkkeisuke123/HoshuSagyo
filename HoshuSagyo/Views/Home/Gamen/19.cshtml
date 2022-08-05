@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "画面の説明";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h3>音声応答画面（作業計画登録画面から開いた場合）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/19_音声応答画面/01_登録画面から起動.png" alt="音声応答画面" />
+            <p>
+                音声応答の設定を行います。<br />
+                ここで設定した音声応答メッセージは、作業開始時と作業終了時に、作業責任者の携帯端末から音声で読み上げられます。
+            </p>
+
+            <h3 class="pt-5">音声応答画面（作業計画編集画面から開いた場合）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/19_音声応答画面/02_編集画面から起動.png" alt="音声応答画面" />
+            <p>
+                作業計画登録時に設定した音声応答情報が初期表示されます。<br />
+                音声応答情報は編集が可能です。
+            </p>
+
+            <h3 class="pt-5">音声応答画面（作業計画参照画面から開いた場合）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/19_音声応答画面/03_参照画面から起動.png" alt="音声応答画面" />
+            <p>
+                作業計画登録時に設定した音声応答情報が初期表示されます。<br />
+                音声応答情報は参照のみ可能です。
+            </p>
+
+            <h3 class="pt-5">音声応答画面（作業計画削除画面から開いた場合）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/19_音声応答画面/03_参照画面から起動.png" alt="音声応答画面" />
+            <p>
+                作業計画登録時に設定した音声応答情報が初期表示されます。<br />
+                音声応答情報は参照のみ可能です。
+            </p>
+            <a class="btn btn-outline-success" asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="">戻る</a>
+        </div>
+    </div>
+</div>

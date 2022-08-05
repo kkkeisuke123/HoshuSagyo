@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "画面遷移図";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_AboutNav" />
+        </div>
+        <div class="col-md-9">
+            @*画面遷移図の画像*@
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/about.js"></script>
+}

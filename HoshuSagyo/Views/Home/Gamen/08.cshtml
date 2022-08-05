@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "画面の説明";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h3>作業計画編集完了画面</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/08_作業計画編集完了画面/01.png" alt="作業計画編集完了画面" />
+            <p>
+                作業計画の編集が成功した場合、この画面に遷移します。<br />
+                戻るボタンを押下すると、作業一覧画面に遷移します。
+            </p>
+            <a class="btn btn-outline-success" asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="">戻る</a>
+        </div>
+    </div>
+</div>

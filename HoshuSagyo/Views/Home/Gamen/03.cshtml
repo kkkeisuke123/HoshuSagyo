@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "画面の説明";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h3>ユーザー管理画面（プロフィール）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/03_ユーザー管理画面/01_プロフィール.png" alt="ユーザー管理画面" />
+            <p>
+                登録時のユーザー名が表示されます。
+            </p>
+
+            <h3 class="pt-5">ユーザー管理画面（パスワード変更）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/03_ユーザー管理画面/02_パスワード変更.png" alt="ユーザー管理画面" />
+            <p>
+                パスワードを変更できます。
+            </p>
+
+            <h3 class="pt-5">ユーザー管理画面（個人データ）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/03_ユーザー管理画面/03_個人データ.png" alt="ユーザー管理画面" />
+            <p>
+                個人データのダウンロードと削除ができます。
+            </p>
+
+            <h3 class="pt-5">ユーザー管理画面（個人データ削除）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/03_ユーザー管理画面/04_個人データ削除.png" alt="ユーザー管理画面" />
+            <p>
+                個人データを削除する際の確認画面です。<br />
+                削除すると復元できませんので、注意してください。
+            </p>
+            <a class="btn btn-outline-success" asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="">戻る</a>
+        </div>
+    </div>
+</div>

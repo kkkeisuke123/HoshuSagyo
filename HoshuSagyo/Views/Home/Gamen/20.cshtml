@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "画面の説明";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h3>作業実績画面（未着手の作業計画から開いた場合）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/20_作業実績画面/01_未着手.png" alt="作業実績画面" />
+            <p>
+                作業実績の設定を行います。<br />
+                「作業着手日時」と「作業着手責任者名」を入力し、「更新」ボタンを押下すると、作業一覧画面上の作業進捗が「着手済」に更新されます。<br />
+                「作業完了日時」と「作業完了責任者名」を入力し、「更新」ボタンを押下すると、作業一覧画面上の作業進捗が「完了済」に更新されます。
+            </p>
+
+            <h3 class="pt-5">作業実績画面（着手済の作業計画から開いた場合）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/20_作業実績画面/02_着手済.png" alt="作業実績画面" />
+            <p>
+                作業実績の設定を行います。<br />
+                作業着手部分の項目には、作業着手時に入力した内容が初期表示されますが、編集はできません。
+            </p>
+
+            <h3 class="pt-5">作業実績画面（完了済の作業計画から開いた場合）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/20_作業実績画面/02_着手済.png" alt="作業実績画面" />
+            <p>
+                作業実績の参照を行います。<br />
+                作業着手部分の項目には、作業着手時に入力した内容が初期表示されますが、編集はできません。<br />
+                作業完了部分も同様です。
+            </p>
+
+            <h3 class="pt-5">作業実績画面（着手遅延の作業計画から開いた場合）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/20_作業実績画面/04_着手遅延.png" alt="作業実績画面" />
+            <p>
+                作業実績の設定を行います。<br />
+                「作業着手日時」と「作業着手責任者名」を入力し、「更新」ボタンを押下すると、作業一覧画面上の作業進捗が「着手済」に更新されます。<br />
+                「作業完了日時」と「作業完了責任者名」を入力し、「更新」ボタンを押下すると、作業一覧画面上の作業進捗が「完了済」に更新されます。
+            </p>
+
+            <h3 class="pt-5">作業実績画面（終了遅延の作業計画から開いた場合）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/20_作業実績画面/05_終了遅延.png" alt="作業実績画面" />
+            <p>
+                作業実績の設定を行います。<br />
+                作業着手部分の項目には、作業着手時に入力した内容が初期表示されますが、編集はできません。
+            </p>
+
+            <h3 class="pt-5">作業実績画面（中止済の作業計画から開いた場合）</h3>
+            <img class="img-fluid border border-dark m-2" src="~/images/20_作業実績画面/06_中止.png" alt="作業実績画面" />
+            <p>
+                作業実績の参照を行います。<br />
+                作業着手部分の項目には、作業着手時に入力した内容が初期表示されますが、編集はできません。<br />
+                作業完了部分も同様です。
+            </p>
+            <a class="btn btn-outline-success" asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="">戻る</a>
+        </div>
+    </div>
+</div>
