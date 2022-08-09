@@ -11,9 +11,12 @@ namespace HoshuSagyo.Controllers
     public class ShimekiriController : Controller
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
-        public ShimekiriController(HoshuSagyoDbContext hoshuSagyoDbContext)
+        private readonly IConfiguration _configuration;
+
+        public ShimekiriController(HoshuSagyoDbContext hoshuSagyoDbContext, IConfiguration configuration)
         {
             _hoshuSagyoDbContext = hoshuSagyoDbContext;
+            _configuration = configuration;
         }
 
         /// <summary>
@@ -22,7 +25,14 @@ namespace HoshuSagyo.Controllers
         /// <returns>締切画面</returns>
         public IActionResult Index()
         {
-            return View(GetShimekiriGamenInfo());
+            // クレームから管轄を取得
+            int kankatsu = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Kankatsu").Value);
+
+            // 締切情報を取得
+            var shimekiriModel = GetShimekiriModel(kankatsu);
+
+            // 締切画面情報を取得
+            return View(GetShimekiriGamenInfo(shimekiriModel));
         }
 
         /// <summary>
@@ -33,16 +43,40 @@ namespace HoshuSagyo.Controllers
         [HttpPost]
         public IActionResult DoShimekiri(ShimekiriGamen inputValue)
         {
+            // 設定ファイルから締切可能な期間を取得
+            int shimekiriKanoDateRangeInDays = int.Parse(_configuration["ShimekiriKanoDateRangeInDays"]);
+
+            // クレームから管轄を取得
+            int kankatsu = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Kankatsu").Value);
+
+            // 締切情報を取得
+            var shimekiriModel = GetShimekiriModel(kankatsu);
+
             // パラメータをチェック
             if (ModelState.IsValid == false)
             {
                 // エラー
                 ModelState.AddModelError(string.Empty, "入力が正しく行われていません");
-                return View("Index", GetShimekiriGamenInfo());
+                return View("Index", GetShimekiriGamenInfo(shimekiriModel));
+            }
+
+            // 過去日が指定されていないことをチェック
+            if (IsMiraiBi(shimekiriModel.ShimekiriZumiBi, inputValue.NewShimekiriZumiBi) == false)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, "新しい締切済日には未来の日付を入力してください");
+                return View("Index", GetShimekiriGamenInfo(shimekiriModel));
+            }
+
+            // 締切可能な範囲を超えていないことをチェック
+            if (IsKikannai(shimekiriModel.ShimekiriZumiBi, inputValue.NewShimekiriZumiBi, shimekiriKanoDateRangeInDays) == false)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, $"一度に締切可能な期間（{shimekiriKanoDateRangeInDays}日間）を超えています");
+                return View("Index", GetShimekiriGamenInfo(shimekiriModel));
             }
 
             // 締切処理
-            var shimekiriModel = GetShimekiriModel();
             shimekiriModel.ShimekiriZumiBi = inputValue.NewShimekiriZumiBi;
 
             _hoshuSagyoDbContext.Update(shimekiriModel);
@@ -54,14 +88,14 @@ namespace HoshuSagyo.Controllers
         /// <summary>
         /// 締切画面の情報を取得します
         /// </summary>
+        /// <param name="shimekiriModel">締切情報</param>
         /// <returns>締切画面情報</returns>
-        private ShimekiriGamen GetShimekiriGamenInfo()
+        private ShimekiriGamen GetShimekiriGamenInfo(ShimekiriModel shimekiriModel)
         {
-            var shimekiriModel = GetShimekiriModel();
             var shimekiriGamenInfo = new ShimekiriGamen
             {
                 OldShimekiriZumiBi = shimekiriModel.ShimekiriZumiBi,
-                NewShimekiriZumiBi = shimekiriModel.ShimekiriZumiBi.AddMonths(1)
+                NewShimekiriZumiBi = shimekiriModel.ShimekiriZumiBi.AddDays(30)
             };
 
             return shimekiriGamenInfo;
@@ -70,14 +104,37 @@ namespace HoshuSagyo.Controllers
         /// <summary>
         /// 締切テーブルからユーザーの系統に紐づくレコードを取得します
         /// </summary>
+        /// <param name="kankatsu">管轄コード</param>
         /// <returns>締切モデル</returns>
-        private ShimekiriModel GetShimekiriModel()
+        private ShimekiriModel GetShimekiriModel(int kankatsu)
         {
-            // クレームから管轄を取得
-            int kankatsu = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Kankatsu").Value);
-
-            // 締切情報を取得
             return _hoshuSagyoDbContext.T_Shimekiri.FirstOrDefault(row => row.Kankatsu == kankatsu);
+        }
+
+        /// <summary>
+        /// 未来日が指定されていることをチェックする
+        /// </summary>
+        /// <param name="oldDate">現在の締切済日</param>
+        /// <param name="newDate">新しい締切済日</param>
+        /// <returns>未来日の場合はtrue、それ以外はfalse</returns>
+        private bool IsMiraiBi(DateTime oldDate, DateTime newDate)
+        {
+            return oldDate < newDate;
+        }
+
+        /// <summary>
+        /// 締め切る日付の期間の長さをチェックする
+        /// </summary>
+        /// <param name="oldDate">現在の締切済日</param>
+        /// <param name="newDate">新しい締切済日</param>
+        /// <param name="shimekiriKanoDateRangeInDays">締切可能な期間</param>
+        /// <returns>期間内の場合はtrue、それ以外はfalse</returns>
+        private bool IsKikannai(DateTime oldDate, DateTime newDate, int shimekiriKanoDateRangeInDays)
+        {
+            // 指定された期間
+            int kikan = (newDate - oldDate).Days;
+
+            return kikan <= shimekiriKanoDateRangeInDays;
         }
     }
 }
