@@ -12,7 +12,7 @@
     else if (actionname === "ScreenExplanation") {
         $("#screenExplanation").addClass("active");
     }
-    else if (actionname === "OperationMethod") {
-        $("#operationMethod").addClass("active");
+    else if (actionname === "Usage") {
+        $("#usage").addClass("active");
     }
 });

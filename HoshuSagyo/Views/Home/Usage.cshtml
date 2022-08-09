@@ -1,0 +1,296 @@
+﻿@{
+    ViewData["Title"] = "使い方";
+}
+
+<h1 class="display-6">@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_AboutNav" />
+        </div>
+        <div class="col-md-9">
+            <h3>アプリ操作の流れ</h3>
+            <p>
+                アプリ操作の流れは、以下の図の手順となります。<br />
+                ここでは「基本の処理フロー」に絞り、操作の流れを記します。   
+            </p>
+            <img class="img-fluid m-2" src="~/images/アプリ説明/アプリ操作の流れ.png" alt="アプリ操作の流れ" />
+
+            @*ユーザー作成*@
+            <hr class="mt-5" />
+            <h4>ユーザー作成</h4>
+            <img class="img-fluid border border-dark m-2" src="~/images/アプリ説明/01.png" alt="ユーザー登録画面" />
+            <p>
+                はじめに、ユーザー登録画面でユーザー登録を行います。<br />
+                画面上部のメニューバーから「登録」リンクをクリックしてユーザー登録画面にアクセスしてください。
+            </p>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/02.png" alt="ユーザー登録画面_フォーム入力済み" />
+            <p>
+                各種入力を行います。<br />
+                ユーザー名は半角英数字で入力してください。パスワードは半角英字、半角数字、半角記号を含めた6文字以上で入力してください。
+            </p>
+            <img class="rounded float-start w-50 mt-5" src="~/images/アプリ説明/03.png" alt="ユーザー登録画面_系統ドロップダウン" />
+            <img class="w-50 mt-5" src="~/images/アプリ説明/04.png" alt="ユーザー登録画面_管轄ドロップダウン" />
+            <p>
+                系統と管轄はドロップダウンから選択してください。<br />
+                登録が成功するとメニュー画面に遷移します。
+            </p>
+            
+            @*作業計画の登録*@
+            <hr class="mt-5" />
+            <h4 class="mt-5">作業計画の登録</h4>
+            <img class="img-fluid border border-dark m-2" src="~/images/アプリ説明/05.png" alt="ユーザー登録画面_登録成功" />
+            <p>
+                ユーザーの作成が出来たら、作業計画の登録を行います。<br />
+                メニューバーから「作業計画」リンクをクリックして作業計画登録画面にアクセスしてください。
+            </p>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/06.png" alt="作業計画登録画面" />
+            <p>
+                各種入力を行います。<br />
+                以下の表を確認し、必要な情報を入力してください。
+            </p>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>入力項目</th>
+                        <th>必須</th>
+                        <th>説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <td>作業番号</td>
+                        <td>－</td>
+                        <td>入力不可。作業一覧画面から表示した際に作業番号付与済みであれば表示されます</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>作業開始日時</td>
+                        <td>◯</td>
+                        <td>カレンダーから日時の選択ができます</td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>作業終了日時</td>
+                        <td>◯</td>
+                        <td>カレンダーから日時の選択ができます</td>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <td>系統</td>
+                        <td>◯</td>
+                        <td>ドロップダウンから選択してください</td>
+                    </tr>
+                    <tr>
+                        <th>5</th>
+                        <td>管轄</td>
+                        <td>◯</td>
+                        <td>ドロップダウンから選択してください</td>
+                    </tr>
+                    <tr>
+                        <th>6</th>
+                        <td>作業種別</td>
+                        <td>◯</td>
+                        <td>ドロップダウンから選択してください</td>
+                    </tr>
+                    <tr>
+                        <th>7</th>
+                        <td>作業場所</td>
+                        <td>◯</td>
+                        <td>ドロップダウンから選択してください</td>
+                    </tr>
+                    <tr>
+                        <th>8</th>
+                        <td>作業内容</td>
+                        <td>◯</td>
+                        <td>90文字以内で入力してください</td>
+                    </tr>
+                    <tr>
+                        <th>9</th>
+                        <td>自社責任者名</td>
+                        <td>－</td>
+                        <td>20文字以内で入力してください</td>
+                    </tr>
+                    <tr>
+                        <th>10</th>
+                        <td>自社作業員数</td>
+                        <td>－</td>
+                        <td>999までの整数で入力してください</td>
+                    </tr>
+                    <tr>
+                        <th>11</th>
+                        <td>協力会社責任者名</td>
+                        <td>－</td>
+                        <td>20文字以内で入力してください</td>
+                    </tr>
+                    <tr>
+                        <th>12</th>
+                        <td>協力会社作業員数</td>
+                        <td>－</td>
+                        <td>999までの整数で入力してください</td>
+                    </tr>
+                </tbody>
+            </table>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/07.png" alt="音声応答画面" />
+            <p>
+                作業計画画面で「音声応答画面」ボタンを押下して、音声応答画面を開きます。<br />
+                以下の表を確認し、必要な情報を入力したら、「設定」ボタンを押下してください（画面が閉じます）。
+            </p>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>入力項目</th>
+                        <th>必須</th>
+                        <th>説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <td>音声応答種別</td>
+                        <td>◯</td>
+                        <td>ドロップダウンから選択してください</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>音声応答メッセージ</td>
+                        <td>◯</td>
+                        <td>ドロップダウンから選択してください。音声応答種別を選択すると、対応するメッセージが選択できるようになります</td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>音声応答種別</td>
+                        <td>◯</td>
+                        <td>ドロップダウンから選択してください</td>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <td>音声応答メッセージ</td>
+                        <td>◯</td>
+                        <td>ドロップダウンから選択してください。音声応答種別を選択すると、対応するメッセージが選択できるようになります</td>
+                    </tr>
+                </tbody>
+            </table>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/08.png" alt="作業計画登録画面_フォーム入力済み" />
+            <p>
+                入力後、「登録」ボタンを押下して作業計画の登録を実行してください。
+            </p>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/09.png" alt="作業計画登録完了画面" />
+            <p>
+                作業計画登録完了画面に遷移したら、登録完了です。
+            </p>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/10.png" alt="作業一覧画面_作業番号未付与" />
+            <p>
+                メニューバーから「作業一覧」リンクをクリックして、作業一覧画面を開きます。<br />
+                先程登録した作業計画が表示されていることを確認します。<br />
+                作業番号の付与は行っていないため、作業進捗の列には何も表示されません。
+            </p>
+
+            @*日付の締切*@
+            <hr class="mt-5" />
+            <h4 class="mt-5">日付の締切</h4>
+            <img class="img-fluid border border-dark m-2" src="~/images/アプリ説明/11.png" alt="締切画面_フォーム入力済み" />
+            <p>
+                メニューバーから「締切」リンクをクリックして、締切画面を開きます。<br />
+                先程登録した作業計画の作業開始日は「2022/08/01」なので、その日付を含むように入力し、「締切」ボタンを押下して締切を実行してください。
+            </p>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/12.png" alt="締切完了画面" />
+            <p>
+                締切完了画面に遷移したら、締切完了です。
+            </p>
+
+            @*作業番号の付与*@
+            <hr class="mt-5" />
+            <h4 class="mt-5">作業番号の付与</h4>
+            <img class="img-fluid border border-dark m-2" src="~/images/アプリ説明/13.png" alt="作業番号付与画面_フォーム入力済み" />
+            <p>
+                メニューバーから「作業番号」リンクをクリックして、作業番号付与画面を開きます。<br />
+                先程登録した作業計画の作業開始日は「2022/08/01」なので、その日付を含むように入力し、「作業番号付与」ボタンを押下して作業番号付与を実行してください。
+            </p>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/14.png" alt="作業番号付与完了画面" />
+            <p>
+                作業番号付与完了画面に遷移したら、作業番号付与完了です。
+            </p>
+
+            @*作業着手*@
+            <hr class="mt-5" />
+            <h4 class="mt-5">作業着手</h4>
+            <img class="img-fluid border border-dark m-2" src="~/images/アプリ説明/15.png" alt="作業一覧画面_作業番号付与済み" />
+            <p>
+                メニューバーから「作業一覧」リンクをクリックして、作業一覧画面を開きます。<br />
+                作業番号を付与したため、先程登録した作業計画の作業進捗の列に「未着手」と表示されていることを確認します。<br />
+            </p>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/16.png" alt="作業実績画面_作業開始部分のフォーム入力済み" />
+            <p>
+                作業一覧画面で「進捗」リンクをクリックして、作業実績画面を開きます。
+                以下の表を確認し、必要な情報を入力したら、「更新」ボタンを押下して進捗を更新してください（画面が閉じます）。
+            </p>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>入力項目</th>
+                        <th>必須</th>
+                        <th>説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <td>作業着手日時</td>
+                        <td>◯</td>
+                        <td>カレンダーから日時の選択ができます</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>作業着手責任者名</td>
+                        <td>◯</td>
+                        <td>20文字以内で入力してください</td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>作業完了日時</td>
+                        <td>－</td>
+                        <td>カレンダーから日時の選択ができます</td>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <td>作業完了責任者名</td>
+                        <td>－</td>
+                        <td>20文字以内で入力してください</td>
+                    </tr>
+                </tbody>
+            </table>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/17.png" alt="作業一覧画面_着手済み" />
+            <p>
+                作業実績画面が閉じ、作業一覧画面が表示されます。<br />
+                進捗を入力した作業計画が「着手済」に更新されたことを確認します。
+            </p>
+
+            @*作業完了*@
+            <hr class="mt-5" />
+            <h4 class="mt-5">作業完了</h4>
+            <img class="img-fluid border border-dark m-2" src="~/images/アプリ説明/18.png" alt="作業実績画面_フォーム入力済み" />
+            <p>
+                作業完了日時と作業完了責任者名を入力し、「更新」ボタンを押下して進捗を更新してください（画面が閉じます）。
+            </p>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/19.png" alt="作業一覧画面_完了済み" />
+            <p>
+                作業実績画面が閉じ、作業一覧画面が表示されます。<br />
+                進捗を入力した作業計画が「完了済」に更新されたことを確認します。
+                これで、一連の基本的なアプリ操作の流れは完了となります。
+            </p>
+
+            <a href="#" id="page-top" class="mt-5">トップへ戻る</a>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/about.js"></script>
+}

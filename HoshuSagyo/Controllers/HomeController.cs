@@ -62,10 +62,10 @@ namespace HoshuSagyo.Controllers
         }
 
         /// <summary>
-        /// 操作方法
+        /// 使い方の説明
         /// </summary>
-        /// <returns>操作方法ページ</returns>
-        public IActionResult OperationMethod()
+        /// <returns>使い方の紹介ページ</returns>
+        public IActionResult Usage()
         {
             return View();
         }
