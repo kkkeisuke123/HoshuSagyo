@@ -18,6 +18,10 @@ namespace HoshuSagyo.Models.InputModels
         // 画面項目
         public int Id { get; set; }
 
+        [DataType(DataType.Date)]
+        [Display(Name = "締切済日")]
+        public DateTime ShimekiriZumiBi { get; set; }
+
         [Required(ErrorMessage = "作業開始日時を入力してください")]
         [DataType(DataType.DateTime)]
         [Display(Name = "作業開始日時")]

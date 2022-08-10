@@ -15,10 +15,12 @@ namespace HoshuSagyo.Controllers
     public class SagyoKeikakuController : Controller
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
+        private readonly IConfiguration _configuration;
 
-        public SagyoKeikakuController(HoshuSagyoDbContext hoshuSagyoDbContext)
+        public SagyoKeikakuController(HoshuSagyoDbContext hoshuSagyoDbContext, IConfiguration configuration)
         {
             _hoshuSagyoDbContext = hoshuSagyoDbContext;
+            _configuration = configuration;
         }
 
         /// <summary>
@@ -80,6 +82,12 @@ namespace HoshuSagyo.Controllers
             gamen.SagyoBashoList = _hoshuSagyoDbContext.M_SagyoBasho.Select(x => new Itemlist { Value = x.SagyoBasho, Text = x.SagyoBashoName }).ToList();
             onseiOto.OnseiOtoList = _hoshuSagyoDbContext.M_OnseiOto.Select(x => new Itemlist { Value = x.OtoShubetsu, Text = x.OtoShubetsuNaiyo }).ToList();
 
+            // クレームから管轄を取得
+            int kankatsu = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Kankatsu").Value);
+
+            // 締切情報を取得
+            gamen.ShimekiriZumiBi = _hoshuSagyoDbContext.T_Shimekiri.FirstOrDefault(row => row.Kankatsu == kankatsu).ShimekiriZumiBi;
+            
             // 作業計画IDが指定された場合（編集、参照、削除）、作業計画を取得する
             if (id != null)
             {
