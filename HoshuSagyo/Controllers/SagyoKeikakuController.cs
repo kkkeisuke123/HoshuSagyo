@@ -160,6 +160,22 @@ namespace HoshuSagyo.Controllers
                 return View("Index", Initialize(null));
             }
 
+            // 作業開始日時が締切済日以前でないことをチェック
+            if (IsMiraiBi(inputValue.ShimekiriZumiBi, inputValue.SagyoKaishiNichiji) == false)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, "作業開始日時には締切済日よりも未来の日時を指定してください");
+                return View("Index", Initialize(null));
+            }
+
+            // 作業開始・終了日時が逆転していないことをチェック
+            if (IsMiraiBi(inputValue.SagyoKaishiNichiji, inputValue.SagyoShuryoNichiji) == false)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, "作業終了日時には作業開始日時よりも未来の日時を指定してください");
+                return View("Index", Initialize(null));
+            }
+
             // 作業計画の登録処理を実行
             var sagyoKeikakuModel = new SagyoKeikakuModel
             {
@@ -237,13 +253,30 @@ namespace HoshuSagyo.Controllers
                 return View("Edit", Initialize(inputValue.Id));
             }
 
+            // 作業開始日時が締切済日以前でないことをチェック
+            if (IsMiraiBi(inputValue.ShimekiriZumiBi, inputValue.SagyoKaishiNichiji) == false)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, "作業開始日時には締切済日よりも未来の日時を指定してください");
+                //return Redirect($"/SagyoKeikaku/Edit/{inputValue.Id}");
+                return View("Edit", Initialize(inputValue.Id));
+            }
+
+            // 作業開始・終了日時が逆転していないことをチェック
+            if (IsMiraiBi(inputValue.SagyoKaishiNichiji, inputValue.SagyoShuryoNichiji) == false)
+            {
+                // エラー
+                ModelState.AddModelError(string.Empty, "作業終了日時には作業開始日時よりも未来の日時を指定してください");
+                return View("Edit", Initialize(inputValue.Id));
+            }
+
             // 編集処理を実行
             var sagyoKeikaku = _hoshuSagyoDbContext.T_SagyoKeikaku.FirstOrDefault(x => x.Id == inputValue.Id);
             if (sagyoKeikaku == null)
             {
                 // エラー
                 ModelState.AddModelError(string.Empty, "作業計画が存在しません");
-                return Redirect($"/SagyoKeikaku/Edit/{inputValue.Id}");
+                return View("Edit", Initialize(inputValue.Id));
             }
 
             sagyoKeikaku.SagyoKaishiNichiji = inputValue.SagyoKaishiNichiji;
@@ -287,7 +320,7 @@ namespace HoshuSagyo.Controllers
             {
                 // エラー
                 ModelState.AddModelError(string.Empty, "作業計画が存在しません");
-                return Redirect($"/SagyoKeikaku/Delete/{id}");
+                return View("Delete", Initialize(int.Parse(id)));
             }
 
             // 作業実績情報の存在チェック
@@ -296,7 +329,7 @@ namespace HoshuSagyo.Controllers
             {
                 // エラー
                 ModelState.AddModelError(string.Empty, "作業実績が存在しません");
-                return Redirect($"/SagyoKeikaku/Delete/{id}");
+                return View("Delete", Initialize(int.Parse(id)));
             }
 
             // 削除処理を実行
@@ -311,6 +344,17 @@ namespace HoshuSagyo.Controllers
             ViewData["Back"] = "SagyoIchiran";
 
             return View("Result", sagyoKeikaku);
+        }
+
+        /// <summary>
+        /// 未来日が指定されていることをチェックします
+        /// </summary>
+        /// <param name="from">日付(from)</param>
+        /// <param name="to">日付(to)</param>
+        /// <returns>未来日の場合はtrue、それ以外はfalse</returns>
+        private bool IsMiraiBi(DateTime from, DateTime to)
+        {
+            return from < to;
         }
     }
 }
