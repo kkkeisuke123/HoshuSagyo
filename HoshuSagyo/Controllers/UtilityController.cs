@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HoshuSagyo.Controllers
 {
-    public class AjaxUtilityController : Controller
+    public class UtilityController : Controller
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
 
-        public AjaxUtilityController(HoshuSagyoDbContext hoshuSagyoDbContext)
+        public UtilityController(HoshuSagyoDbContext hoshuSagyoDbContext)
         {
             _hoshuSagyoDbContext = hoshuSagyoDbContext;
         }

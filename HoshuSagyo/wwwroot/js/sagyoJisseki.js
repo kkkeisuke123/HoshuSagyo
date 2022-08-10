@@ -12,7 +12,7 @@ $(document).ready(function () {
     function getSagyoJisseki(sagyoKeikakuId) {
         $.ajax({
             type: "Post",
-            url: "/AjaxUtility/GetSagyoJisseki",
+            url: "/Utility/GetSagyoJisseki",
             data: { "SagyoKeikakuId": sagyoKeikakuId },
             dataType: "json"
         }).done(function (response) {

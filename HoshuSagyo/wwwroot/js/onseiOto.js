@@ -6,7 +6,7 @@ $(document).ready(function () {
         // 選択された種別に対応するメッセージの一覧を取得します
         $.ajax({
             type: "Post",
-            url: "/AjaxUtility/GetOnseiOtoShosai",
+            url: "/Utility/GetOnseiOtoShosai",
             data: { "OtoShubetsu": $("#kaishiShubetsuList").val() },
             dataType: "json"
         }).done(function (response) {
@@ -33,7 +33,7 @@ $(document).ready(function () {
         // 選択された種別に対応するメッセージの一覧を取得します
         $.ajax({
             type: "Post",
-            url: "/AjaxUtility/GetOnseiOtoShosai",
+            url: "/Utility/GetOnseiOtoShosai",
             data: { "OtoShubetsu": $("#shuryoShubetsuList").val() },
             dataType: "json"
         }).done(function (response) {
