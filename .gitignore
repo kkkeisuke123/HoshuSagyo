@@ -365,3 +365,4 @@ FodyWeavers.xsd
 
 # マイグレーションファイルを除外
 HoshuSagyo/Data/Migrations/HoshuSagyo/*
+/HoshuSagyo/Properties/ServiceDependencies/HoshuSagyo20220817163026 - Web Deploy/profile.arm.json
