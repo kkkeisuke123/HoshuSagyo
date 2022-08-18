@@ -3,6 +3,7 @@ using HoshuSagyo.Models.InputModels;
 using HoshuSagyo.Models.Transactions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 namespace HoshuSagyo.Controllers
 {
@@ -12,11 +13,14 @@ namespace HoshuSagyo.Controllers
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<SagyoBangoController> _logger;
 
-        public SagyoBangoController(HoshuSagyoDbContext hoshuSagyoDbContext, IConfiguration configuration)
+        public SagyoBangoController(HoshuSagyoDbContext hoshuSagyoDbContext,
+            IConfiguration configuration, ILogger<SagyoBangoController> logger)
         {
             _hoshuSagyoDbContext = hoshuSagyoDbContext;
             _configuration = configuration;
+            _logger = logger;
         }
 
         /// <summary>
@@ -25,6 +29,8 @@ namespace HoshuSagyo.Controllers
         /// <returns>作業番号付与画面</returns>
         public IActionResult Index()
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             return View();
         }
 
@@ -36,6 +42,8 @@ namespace HoshuSagyo.Controllers
         [HttpPost]
         public IActionResult DoSagyoBangoFuyo(SagyoBangoGamen inputValue)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             // パラメータをチェック
             if (ModelState.IsValid == false)
             {

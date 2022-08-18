@@ -5,6 +5,7 @@ using HoshuSagyo.Models.InputModels;
 using HoshuSagyo.Models.Transactions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 namespace HoshuSagyo.Controllers
 {
@@ -12,10 +13,12 @@ namespace HoshuSagyo.Controllers
     public class SagyoIchiranController : Controller
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
+        private readonly ILogger<SagyoIchiranController> _logger;
 
-        public SagyoIchiranController(HoshuSagyoDbContext hoshuSagyoDbContext)
+        public SagyoIchiranController(HoshuSagyoDbContext hoshuSagyoDbContext, ILogger<SagyoIchiranController> logger)
         {
             _hoshuSagyoDbContext = hoshuSagyoDbContext;
+            _logger = logger;
         }
 
         /// <summary>
@@ -24,6 +27,8 @@ namespace HoshuSagyo.Controllers
         /// <returns></returns>
         public IActionResult Index()
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             // 作業計画を取得し、一覧表示する
             return View(Initialize(_hoshuSagyoDbContext.T_SagyoKeikaku));
         }
@@ -36,6 +41,8 @@ namespace HoshuSagyo.Controllers
         [HttpPost]
         public IActionResult Search(SagyoIchiranGamen inputValue)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             // 条件をもとに検索する
             IQueryable<SagyoKeikakuModel> result = _hoshuSagyoDbContext.T_SagyoKeikaku.Select(x => x);
 

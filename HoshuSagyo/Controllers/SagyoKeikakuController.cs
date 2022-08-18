@@ -7,6 +7,7 @@ using HoshuSagyo.Models.Transactions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace HoshuSagyo.Controllers
 {
@@ -15,12 +16,12 @@ namespace HoshuSagyo.Controllers
     public class SagyoKeikakuController : Controller
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
-        private readonly IConfiguration _configuration;
+        private readonly ILogger<SagyoKeikakuController> _logger;
 
-        public SagyoKeikakuController(HoshuSagyoDbContext hoshuSagyoDbContext, IConfiguration configuration)
+        public SagyoKeikakuController(HoshuSagyoDbContext hoshuSagyoDbContext, ILogger<SagyoKeikakuController> logger)
         {
             _hoshuSagyoDbContext = hoshuSagyoDbContext;
-            _configuration = configuration;
+            _logger = logger;
         }
 
         /// <summary>
@@ -29,6 +30,8 @@ namespace HoshuSagyo.Controllers
         /// <returns>作業計画登録画面</returns>
         public IActionResult Index()
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             return View(Initialize(null));
         }
 
@@ -39,6 +42,8 @@ namespace HoshuSagyo.Controllers
         /// <returns>作業計画編集画面</returns>
         public IActionResult Edit(int id)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             return View(Initialize(id));
         }
 
@@ -49,6 +54,8 @@ namespace HoshuSagyo.Controllers
         /// <returns>作業計画参照画面</returns>
         public IActionResult Reference(int id)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             return View(Initialize(id));
         }
 
@@ -59,6 +66,8 @@ namespace HoshuSagyo.Controllers
         /// <returns>作業計画削除画面</returns>
         public IActionResult Delete(int id)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             return View(Initialize(id));
         }
 
@@ -152,6 +161,8 @@ namespace HoshuSagyo.Controllers
         public IActionResult DoToroku(SagyoKeikakuGamen inputValue,
             string sagyoKaishiOnseiOtoShosaiId, string sagyoShuryoOnseiOtoShosaiId)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             // パラメータをチェック
             if (ModelState.IsValid == false)
             {
@@ -245,6 +256,8 @@ namespace HoshuSagyo.Controllers
         public IActionResult DoEdit(SagyoKeikakuGamen inputValue,
             string sagyoKaishiOnseiOtoShosaiId, string sagyoShuryoOnseiOtoShosaiId)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             // パラメータをチェック
             if (ModelState.IsValid == false)
             {
@@ -314,6 +327,8 @@ namespace HoshuSagyo.Controllers
         [HttpPost]
         public IActionResult DoDelete(string id)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             // 作業計画情報の存在チェック
             var sagyoKeikaku = _hoshuSagyoDbContext.T_SagyoKeikaku.FirstOrDefault(x => x.Id == int.Parse(id));
             if (sagyoKeikaku == null)

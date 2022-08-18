@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace HoshuSagyo.Controllers
 {
@@ -17,12 +18,16 @@ namespace HoshuSagyo.Controllers
         [Authorize]
         public IActionResult Index()
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+            
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
@@ -32,6 +37,8 @@ namespace HoshuSagyo.Controllers
         /// <returns>アプリの概要ページ</returns>
         public IActionResult About()
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             return View();
         }
 
@@ -41,6 +48,8 @@ namespace HoshuSagyo.Controllers
         /// <returns>画面遷移図ページ</returns>
         public IActionResult TransitionDiagram()
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             return View();
         }
 
@@ -50,6 +59,8 @@ namespace HoshuSagyo.Controllers
         /// <returns>画面の説明ページ</returns>
         public IActionResult ScreenExplanation(int? id)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             if (id is null)
             {
                 return View();
@@ -67,6 +78,8 @@ namespace HoshuSagyo.Controllers
         /// <returns>使い方の紹介ページ</returns>
         public IActionResult Usage()
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             return View();
         }
     }

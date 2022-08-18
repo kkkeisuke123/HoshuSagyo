@@ -1,16 +1,19 @@
 ﻿using HoshuSagyo.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Reflection;
 
 namespace HoshuSagyo.Controllers
 {
     public class UtilityController : Controller
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
+        private readonly ILogger<UtilityController> _logger;
 
-        public UtilityController(HoshuSagyoDbContext hoshuSagyoDbContext)
+        public UtilityController(HoshuSagyoDbContext hoshuSagyoDbContext, ILogger<UtilityController> logger)
         {
             _hoshuSagyoDbContext = hoshuSagyoDbContext;
+            _logger = logger;
         }
 
         /// <summary>
@@ -21,6 +24,8 @@ namespace HoshuSagyo.Controllers
         [HttpPost]
         public JsonResult GetOnseiOtoShosai(string otoShubetsu)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             var shosaiList = _hoshuSagyoDbContext.M_OnseiOtoShosai.Where(x => x.OtoShubetsu == int.Parse(otoShubetsu));
             return Json(new SelectList(shosaiList, "Id", "Message"));
         }
@@ -33,6 +38,8 @@ namespace HoshuSagyo.Controllers
         [HttpPost]
         public JsonResult GetSagyoJisseki(string sagyoKeikakuId)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             var sagyoJisseki = _hoshuSagyoDbContext.T_SagyoJisseki.FirstOrDefault(x => x.SagyoKeikakuId == int.Parse(sagyoKeikakuId));
             return Json(sagyoJisseki);
         }

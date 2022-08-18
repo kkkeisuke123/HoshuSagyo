@@ -3,6 +3,7 @@ using HoshuSagyo.Models.InputModels;
 using HoshuSagyo.Models.Transactions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 namespace HoshuSagyo.Controllers
 {
@@ -12,11 +13,14 @@ namespace HoshuSagyo.Controllers
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<ShimekiriKaijoController> _logger;
 
-        public ShimekiriKaijoController(HoshuSagyoDbContext hoshuSagyoDbContext, IConfiguration configuration)
+        public ShimekiriKaijoController(HoshuSagyoDbContext hoshuSagyoDbContext,
+            IConfiguration configuration, ILogger<ShimekiriKaijoController> logger)
         {
             _hoshuSagyoDbContext = hoshuSagyoDbContext;
             _configuration = configuration;
+            _logger = logger;
         }
 
         /// <summary>
@@ -25,6 +29,8 @@ namespace HoshuSagyo.Controllers
         /// <returns>締切解除画面</returns>
         public IActionResult Index()
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             // クレームから管轄を取得
             int kankatsu = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Kankatsu").Value);
 
@@ -43,6 +49,8 @@ namespace HoshuSagyo.Controllers
         [HttpPost]
         public IActionResult DoShimekiriKaijo(ShimekiriGamen inputValue)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             // 設定ファイルから締切可能な期間を取得
             int shimekiriKanoDateRangeInDays = int.Parse(_configuration["ShimekiriKanoDateRangeInDays"]);
 

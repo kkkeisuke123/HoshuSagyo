@@ -2,6 +2,7 @@
 using HoshuSagyo.Enums;
 using HoshuSagyo.Models.DisplayModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 namespace HoshuSagyo.Controllers
 {
@@ -9,10 +10,12 @@ namespace HoshuSagyo.Controllers
     public class SagyoJissekiController : Controller
     {
         private readonly HoshuSagyoDbContext _hoshuSagyoDbContext;
+        private readonly ILogger<SagyoJissekiController> _logger;
 
-        public SagyoJissekiController(HoshuSagyoDbContext hoshuSagyoDbContext)
+        public SagyoJissekiController(HoshuSagyoDbContext hoshuSagyoDbContext, ILogger<SagyoJissekiController> logger)
         {
             _hoshuSagyoDbContext = hoshuSagyoDbContext;
+            _logger = logger;
         }
 
         /// <summary>
@@ -23,6 +26,8 @@ namespace HoshuSagyo.Controllers
         [HttpPost]
         public IActionResult Update(SagyoJissekiDisplayContent inputValue)
         {
+            _logger.LogInformation($"{MethodBase.GetCurrentMethod().Name} START");
+
             // 更新処理を実行
             var sagyoJisseki = _hoshuSagyoDbContext.T_SagyoJisseki.FirstOrDefault(x => x.SagyoKeikakuId == inputValue.SagyoKeikakuId);
             if (sagyoJisseki == null)
