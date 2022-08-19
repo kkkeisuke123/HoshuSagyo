@@ -88,7 +88,7 @@ namespace HoshuSagyo.Controllers
 
             // 一覧表示する内容の作成
             gamen.SagyoIchiranDisplayContents = new List<SagyoIchiranDisplayContent>();
-            foreach (var sagyoKeikaku in sagyoKeikakuModels)
+            foreach (var sagyoKeikaku in sagyoKeikakuModels.ToList())
             {
                 var content = new SagyoIchiranDisplayContent();
 
