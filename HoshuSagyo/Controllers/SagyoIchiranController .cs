@@ -93,7 +93,7 @@ namespace HoshuSagyo.Controllers
                 var content = new SagyoIchiranDisplayContent();
 
                 content.Id = sagyoKeikaku.Id;
-                content.SagyoKaishiBi = sagyoKeikaku.SagyoKaishiNichiji.ToShortDateString();
+                content.SagyoKaishiBi = sagyoKeikaku.SagyoKaishiNichiji.ToString("yyyy/MM/dd");
                 content.SagyoNaiyo = sagyoKeikaku.SagyoNaiyo;
                 content.KeitoName = _hoshuSagyoDbContext.M_Keito.FirstOrDefault(x => x.Keito == sagyoKeikaku.Keito).KeitoName;
                 content.KankatsuName = _hoshuSagyoDbContext.M_Kankatsu.FirstOrDefault(x => x.Kankatsu == sagyoKeikaku.Kankatsu).KankatsuName;
