@@ -32,17 +32,17 @@ $(document).ready(function () {
         // 着手済、終了遅延の場合
         if (shinchoku === 2 || shinchoku === 5) {
             // 着手関連の項目を非活性化
-            $("#SagyoChakushuNichiji").attr("disabled", "disabled");
-            $("#SagyoChakushuSekininshaMei").attr("disabled", "disabled");
+            $("#SagyoChakushuNichiji").attr("readonly", "readonly");
+            $("#SagyoChakushuSekininshaMei").attr("readonly", "readonly");
         }
         // 完了済、中止の場合
         else if (shinchoku === 3 || shinchoku === 6) {
             // 閉じるボタン以外の項目を非活性化
-            $("#SagyoChakushuNichiji").attr("disabled", "disabled");
-            $("#SagyoChakushuSekininshaMei").attr("disabled", "disabled");
-            $("#SagyoKanryoNichiji").attr("disabled", "disabled");
-            $("#SagyoKanryoSekininshaMei").attr("disabled", "disabled");
-            $("#btn-update").attr("disabled", "disabled");
+            $("#SagyoChakushuNichiji").attr("readonly", "readonly");
+            $("#SagyoChakushuSekininshaMei").attr("readonly", "readonly");
+            $("#SagyoKanryoNichiji").attr("readonly", "readonly");
+            $("#SagyoKanryoSekininshaMei").attr("readonly", "readonly");
+            $("#btn-update").attr("readonly", "readonly");
         }
     }
 
@@ -60,11 +60,11 @@ $(document).ready(function () {
 
     // 項目を活性化する
     function activation() {
-        $("#SagyoChakushuNichiji").removeAttr("disabled", "disabled");
-        $("#SagyoChakushuSekininshaMei").removeAttr("disabled", "disabled");
-        $("#SagyoKanryoNichiji").removeAttr("disabled", "disabled");
-        $("#SagyoKanryoSekininshaMei").removeAttr("disabled", "disabled");
-        $("#btn-update").removeAttr("disabled", "disabled");
+        $("#SagyoChakushuNichiji").removeAttr("readonly");
+        $("#SagyoChakushuSekininshaMei").removeAttr("readonly");
+        $("#SagyoKanryoNichiji").removeAttr("readonly");
+        $("#SagyoKanryoSekininshaMei").removeAttr("readonly");
+        $("#btn-update").removeAttr("readonly");
     }
 
     // 入力チェックエラー時のメッセージをクリアする
