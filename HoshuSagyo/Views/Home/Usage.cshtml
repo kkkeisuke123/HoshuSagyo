@@ -7,10 +7,7 @@
 <div>
     <hr />
     <div class="row">
-        <div class="col-md-3">
-            <partial name="_AboutNav" />
-        </div>
-        <div class="col-md-9">
+        <div class="col">
             <h3>アプリ操作の流れ</h3>
             <p>
                 アプリ操作の流れは、以下の図の手順となります。<br />
@@ -65,70 +62,76 @@
                         <th>1</th>
                         <td>作業番号</td>
                         <td>－</td>
-                        <td>入力不可。作業一覧画面から表示した際に作業番号付与済みであれば表示されます</td>
+                        <td>作業一覧画面から表示した際に作業番号付与済みであれば表示されます（入力不可）</td>
                     </tr>
                     <tr>
                         <th>2</th>
+                        <td>締切済日</td>
+                        <td>－</td>
+                        <td>ユーザーの管轄に紐づく締切済日が表示されます（編集不可）</td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
                         <td>作業開始日時</td>
                         <td>◯</td>
                         <td>カレンダーから日時の選択ができます</td>
                     </tr>
                     <tr>
-                        <th>3</th>
+                        <th>4</th>
                         <td>作業終了日時</td>
                         <td>◯</td>
                         <td>カレンダーから日時の選択ができます</td>
                     </tr>
                     <tr>
-                        <th>4</th>
+                        <th>5</th>
                         <td>系統</td>
                         <td>◯</td>
                         <td>ドロップダウンから選択してください</td>
                     </tr>
                     <tr>
-                        <th>5</th>
+                        <th>6</th>
                         <td>管轄</td>
                         <td>◯</td>
                         <td>ドロップダウンから選択してください</td>
                     </tr>
                     <tr>
-                        <th>6</th>
+                        <th>7</th>
                         <td>作業種別</td>
                         <td>◯</td>
                         <td>ドロップダウンから選択してください</td>
                     </tr>
                     <tr>
-                        <th>7</th>
+                        <th>8</th>
                         <td>作業場所</td>
                         <td>◯</td>
                         <td>ドロップダウンから選択してください</td>
                     </tr>
                     <tr>
-                        <th>8</th>
+                        <th>9</th>
                         <td>作業内容</td>
                         <td>◯</td>
                         <td>90文字以内で入力してください</td>
                     </tr>
                     <tr>
-                        <th>9</th>
+                        <th>10</th>
                         <td>自社責任者名</td>
                         <td>－</td>
                         <td>20文字以内で入力してください</td>
                     </tr>
                     <tr>
-                        <th>10</th>
+                        <th>11</th>
                         <td>自社作業員数</td>
                         <td>－</td>
                         <td>999までの整数で入力してください</td>
                     </tr>
                     <tr>
-                        <th>11</th>
+                        <th>12</th>
                         <td>協力会社責任者名</td>
                         <td>－</td>
                         <td>20文字以内で入力してください</td>
                     </tr>
                     <tr>
-                        <th>12</th>
+                        <th>13</th>
                         <td>協力会社作業員数</td>
                         <td>－</td>
                         <td>999までの整数で入力してください</td>
@@ -188,7 +191,7 @@
             <p>
                 メニューバーから「作業一覧」リンクをクリックして、作業一覧画面を開きます。<br />
                 先程登録した作業計画が表示されていることを確認します。<br />
-                作業番号の付与は行っていないため、作業進捗の列には何も表示されません。
+                ただし、作業番号の付与は行っていないため、作業進捗の列には何も表示されません。
             </p>
 
             @*日付の締切*@
@@ -197,7 +200,7 @@
             <img class="img-fluid border border-dark m-2" src="~/images/アプリ説明/11.png" alt="締切画面_フォーム入力済み" />
             <p>
                 メニューバーから「締切」リンクをクリックして、締切画面を開きます。<br />
-                先程登録した作業計画の作業開始日は「2022/08/01」なので、その日付を含むように入力し、「締切」ボタンを押下して締切を実行してください。
+                先程登録した作業計画の作業開始日は「2022/09/09」なので、その日付を含むように入力し、「締切」ボタンを押下して締切を実行してください。
             </p>
             <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/12.png" alt="締切完了画面" />
             <p>
@@ -210,7 +213,7 @@
             <img class="img-fluid border border-dark m-2" src="~/images/アプリ説明/13.png" alt="作業番号付与画面_フォーム入力済み" />
             <p>
                 メニューバーから「作業番号」リンクをクリックして、作業番号付与画面を開きます。<br />
-                先程登録した作業計画の作業開始日は「2022/08/01」なので、その日付を含むように入力し、「作業番号付与」ボタンを押下して作業番号付与を実行してください。
+                先程登録した作業計画の作業開始日は「2022/09/09」なので、その日付を含むように入力し、「作業番号付与」ボタンを押下して作業番号付与を実行してください。
             </p>
             <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/14.png" alt="作業番号付与完了画面" />
             <p>
@@ -223,11 +226,18 @@
             <img class="img-fluid border border-dark m-2" src="~/images/アプリ説明/15.png" alt="作業一覧画面_作業番号付与済み" />
             <p>
                 メニューバーから「作業一覧」リンクをクリックして、作業一覧画面を開きます。<br />
-                作業番号を付与したため、先程登録した作業計画の作業進捗の列に「未着手」と表示されていることを確認します。<br />
+                作業番号を付与したため、作業に着手できるようになりました。<br />
+                先程登録した作業計画の作業進捗の列に「未着手」と表示されていることを確認します。<br />
+                「進捗」リンクをクリックして作業実績画面を開きます。
             </p>
-            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/16.png" alt="作業実績画面_作業開始部分のフォーム入力済み" />
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/16.png" alt="作業実績画面_起動直後の状態" />
             <p>
-                作業一覧画面で「進捗」リンクをクリックして、作業実績画面を開きます。
+                作業実績画面で進捗状態を入力します。<br />
+                現時点では未着手であるため、画面には何も入力されていません。<br />
+            </p>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/17.png" alt="作業実績画面_作業開始部分のフォーム入力済み" />
+            <p>
+                作業の着手を報告します。<br />
                 以下の表を確認し、必要な情報を入力したら、「更新」ボタンを押下して進捗を更新してください（画面が閉じます）。
             </p>
             <table class="table table-sm">
@@ -266,7 +276,7 @@
                     </tr>
                 </tbody>
             </table>
-            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/17.png" alt="作業一覧画面_着手済み" />
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/18.png" alt="作業一覧画面_着手済み" />
             <p>
                 作業実績画面が閉じ、作業一覧画面が表示されます。<br />
                 進捗を入力した作業計画が「着手済」に更新されたことを確認します。
@@ -275,18 +285,60 @@
             @*作業完了*@
             <hr class="mt-5" />
             <h4 class="mt-5">作業完了</h4>
-            <img class="img-fluid border border-dark m-2" src="~/images/アプリ説明/18.png" alt="作業実績画面_フォーム入力済み" />
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/19.png" alt="作業実績画面_起動直後の状態" />
             <p>
-                作業完了日時と作業完了責任者名を入力し、「更新」ボタンを押下して進捗を更新してください（画面が閉じます）。
+                再び、作業実績画面で進捗状態を入力します。<br />
+                先程の進捗入力により「着手済」となったため、「作業着手」の情報が入力された状態です。<br />
             </p>
-            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/19.png" alt="作業一覧画面_完了済み" />
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/20.png" alt="作業実績画面_フォーム入力済み" />
+            <p>
+                作業の完了を報告します。<br />
+                以下の表を確認し、必要な情報を入力したら、「更新」ボタンを押下して進捗を更新してください（画面が閉じます）。
+            </p>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>入力項目</th>
+                        <th>必須</th>
+                        <th>説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <td>作業着手日時</td>
+                        <td>－</td>
+                        <td>作業着手時に入力した情報が表示されます（編集不可）</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>作業着手責任者名</td>
+                        <td>－</td>
+                        <td>作業着手時に入力した情報が表示されます（編集不可）</td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>作業完了日時</td>
+                        <td>◯</td>
+                        <td>カレンダーから日時の選択ができます</td>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <td>作業完了責任者名</td>
+                        <td>◯</td>
+                        <td>20文字以内で入力してください</td>
+                    </tr>
+                </tbody>
+            </table>
+            <img class="img-fluid border border-dark m-2 mt-5" src="~/images/アプリ説明/21.png" alt="作業一覧画面_完了済み" />
             <p>
                 作業実績画面が閉じ、作業一覧画面が表示されます。<br />
                 進捗を入力した作業計画が「完了済」に更新されたことを確認します。
                 これで、一連の基本的なアプリ操作の流れは完了となります。
             </p>
 
-            <a href="#" id="page-top" class="mt-5">トップへ戻る</a>
+            <a class="btn btn-outline-success" asp-controller="Home" asp-action="About" asp-route-id="">戻る</a>
         </div>
     </div>
 </div>
