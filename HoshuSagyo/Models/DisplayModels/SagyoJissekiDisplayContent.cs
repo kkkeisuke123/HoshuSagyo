@@ -7,6 +7,8 @@ namespace HoshuSagyo.Models.DisplayModels
         // 画面項目
         public int SagyoKeikakuId { get; set; }
 
+        public int Shinchoku { get; set; }
+
         [Required(ErrorMessage ="作業着手日時を入力してください")]
         [DataType(DataType.DateTime)]
         [Display(Name = "作業着手日時")]

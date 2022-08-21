@@ -10,6 +10,8 @@
             </div>
             <div class="modal-body">
                 <input asp-for="@Model.SagyoKeikakuId" type="hidden" />
+                <input asp-for="@Model.Shinchoku" type="hidden" />
+
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col">
@@ -50,7 +52,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">更新</button>
+                <button id="btn-update" type="submit" class="btn btn-primary">更新</button>
                 <button id="btn-close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
             </div>
         </div>
