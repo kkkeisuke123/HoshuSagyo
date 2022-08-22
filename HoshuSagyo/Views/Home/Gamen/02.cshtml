@@ -12,8 +12,34 @@
             <img class="img-fluid border border-dark m-2" src="~/images/02_ログイン画面/01.png" alt="ログイン画面" />
             <p>
                 ログイン登録画面は、ユーザー登録画面で登録したユーザーで保守作業システムにログインするための画面です。<br />
-                ユーザー名とパスワードを入力してください。
+                なお、ログインしていない状態で各種画面（作業登録画面、作業一覧画面など）にアクセスした場合、<br />
+                ログイン画面にリダイレクトされます。<br />
+                以下の表を確認し、必要な情報を入力してログインしてください。
             </p>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>入力項目</th>
+                        <th>必須</th>
+                        <th>説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <td>ユーザー名</td>
+                        <td>◯</td>
+                        <td>ユーザー登録時のユーザー名</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>パスワード</td>
+                        <td>◯</td>
+                        <td>ユーザー登録時のパスワード</td>
+                    </tr>
+                </tbody>
+            </table>
             <a class="btn btn-outline-success" asp-controller="Home" asp-action="ScreenExplanation" asp-route-id="">戻る</a>
         </div>
     </div>
