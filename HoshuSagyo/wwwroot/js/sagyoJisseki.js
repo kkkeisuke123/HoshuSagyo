@@ -44,8 +44,8 @@ $(document).ready(function () {
             $("#SagyoChakushuSekininshaMei").attr("readonly", "readonly");
             $("#SagyoKanryoNichiji").attr("readonly", "readonly");
             $("#SagyoKanryoSekininshaMei").attr("readonly", "readonly");
-            $("#btn-update").attr("readonly", "readonly");
             $("#ChushiFlg").attr("disabled", "disabled");
+            $("#btn-update").attr("disabled", "disabled");
         }
     }
 
@@ -92,8 +92,8 @@ $(document).ready(function () {
         $("#SagyoChakushuSekininshaMei").removeAttr("readonly");
         $("#SagyoKanryoNichiji").removeAttr("readonly");
         $("#SagyoKanryoSekininshaMei").removeAttr("readonly");
-        $("#btn-update").removeAttr("readonly");
         $("#ChushiFlg").removeAttr("disabled");
+        $("#btn-update").removeAttr("disabled");
     }
 
     // 入力チェックエラー時のメッセージをクリアする
