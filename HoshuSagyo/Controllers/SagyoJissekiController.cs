@@ -38,8 +38,14 @@ namespace HoshuSagyo.Controllers
             }
 
             // 進捗を確認する
+            // 中止チェックボックスがチェック済みの場合
+            if (inputValue.ChushiFlg == true)
+            {
+                // 中止
+                sagyoJisseki.Shinchoku = (int)Shinchoku.Chushi;
+            }
             // 作業着手日時と責任者名が入力済の場合
-            if (inputValue.SagyoChakushuNichiji != null && inputValue.SagyoChakushuSekininshaMei != null)
+            else if (inputValue.SagyoChakushuNichiji != null && inputValue.SagyoChakushuSekininshaMei != null)
             {
                 // 作業完了日時と責任者名が入力済の場合
                 if (inputValue.SagyoKanryoNichiji != null && inputValue.SagyoKanryoSekininshaMei != null)
@@ -55,11 +61,14 @@ namespace HoshuSagyo.Controllers
             }
 
             // 画面の入力項目を反映させる
-            sagyoJisseki.SagyoChakushuNichiji = inputValue.SagyoChakushuNichiji;
-            sagyoJisseki.SagyoChakushuSekininshaMei = inputValue.SagyoChakushuSekininshaMei ?? string.Empty;
-            sagyoJisseki.SagyoKanryoNichiji = inputValue.SagyoKanryoNichiji;
-            sagyoJisseki.SagyoKanryoSekininshaMei = inputValue.SagyoKanryoSekininshaMei ?? string.Empty;
-
+            if (inputValue.ChushiFlg == false)
+            {
+                sagyoJisseki.SagyoChakushuNichiji = inputValue.SagyoChakushuNichiji;
+                sagyoJisseki.SagyoChakushuSekininshaMei = inputValue.SagyoChakushuSekininshaMei ?? string.Empty;
+                sagyoJisseki.SagyoKanryoNichiji = inputValue.SagyoKanryoNichiji;
+                sagyoJisseki.SagyoKanryoSekininshaMei = inputValue.SagyoKanryoSekininshaMei ?? string.Empty;
+            }
+            
             // DB更新
             _hoshuSagyoDbContext.Update(sagyoJisseki);
             _hoshuSagyoDbContext.SaveChanges();

@@ -34,6 +34,8 @@ $(document).ready(function () {
             // 着手関連の項目を非活性化
             $("#SagyoChakushuNichiji").attr("readonly", "readonly");
             $("#SagyoChakushuSekininshaMei").attr("readonly", "readonly");
+            // 着手済のため、中止はできない
+            $("#ChushiFlg").attr("disabled", "disabled");
         }
         // 完了済、中止の場合
         else if (shinchoku === 3 || shinchoku === 6) {
@@ -43,6 +45,32 @@ $(document).ready(function () {
             $("#SagyoKanryoNichiji").attr("readonly", "readonly");
             $("#SagyoKanryoSekininshaMei").attr("readonly", "readonly");
             $("#btn-update").attr("readonly", "readonly");
+            $("#ChushiFlg").attr("disabled", "disabled");
+        }
+    }
+
+    // 中止チェックボックスチェック時の処理
+    $("#ChushiFlg").change(function () {
+        activeInactiveControl($("#ChushiFlg").prop("checked"));
+    });
+
+    // 項目の活性・非活性の制御を行う
+    function activeInactiveControl(checked) {
+        // チェックされた場合
+        if (checked === true) {
+            // 着手、終了関連の項目を非活性化
+            $("#SagyoChakushuNichiji").attr("disabled", "disabled");
+            $("#SagyoChakushuSekininshaMei").attr("disabled", "disabled");
+            $("#SagyoKanryoNichiji").attr("disabled", "disabled");
+            $("#SagyoKanryoSekininshaMei").attr("disabled", "disabled");
+        }
+        // チェックが外された場合
+        else {
+            // 着手、終了関連の項目を活性化
+            $("#SagyoChakushuNichiji").removeAttr("disabled");
+            $("#SagyoChakushuSekininshaMei").removeAttr("disabled");
+            $("#SagyoKanryoNichiji").removeAttr("disabled");
+            $("#SagyoKanryoSekininshaMei").removeAttr("disabled");
         }
     }
 
@@ -65,6 +93,7 @@ $(document).ready(function () {
         $("#SagyoKanryoNichiji").removeAttr("readonly");
         $("#SagyoKanryoSekininshaMei").removeAttr("readonly");
         $("#btn-update").removeAttr("readonly");
+        $("#ChushiFlg").removeAttr("disabled");
     }
 
     // 入力チェックエラー時のメッセージをクリアする

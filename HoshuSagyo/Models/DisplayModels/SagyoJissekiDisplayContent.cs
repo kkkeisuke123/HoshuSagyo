@@ -9,6 +9,8 @@ namespace HoshuSagyo.Models.DisplayModels
 
         public int Shinchoku { get; set; }
 
+        public bool ChushiFlg { get; set; }
+
         [Required(ErrorMessage ="作業着手日時を入力してください")]
         [DataType(DataType.DateTime)]
         [Display(Name = "作業着手日時")]

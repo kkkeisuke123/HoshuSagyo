@@ -51,7 +51,11 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-between">
+                <div class="flex-grow-1">
+                    <input asp-for="@Model.ChushiFlg" />
+                    <label asp-for="@Model.ChushiFlg" >中止する</label>
+                </div>
                 <button id="btn-update" type="submit" class="btn btn-primary">更新</button>
                 <button id="btn-close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
             </div>
